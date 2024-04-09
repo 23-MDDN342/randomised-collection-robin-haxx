@@ -26,7 +26,7 @@ function changeRandomSeed() {
 }
 
 // global variables for colors
-const bg_color1 = [71, 222, 219]
+const bg_color1 = [71, 122, 89]
 
 function mouseClicked() {
   changeRandomSeed();
