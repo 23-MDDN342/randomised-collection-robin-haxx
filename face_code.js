@@ -13,74 +13,64 @@
  * eye_value is an integer number of eyes: either 0, 1, 2, or 3
  * mouth_value is how open the mouth is and should generally range from 0.5 to 10
  */
+let moariki,
+moaHakahaka,
+moaNunui,
+moaWaewaeTaumaha,
+moaMomoua,
+moaKoukou,
+moaPukepuke,
+kuranui,
+moaRuarangi;
 
-
-
-
-function orangeAlienFace(tilt_value, eye_value, mouth_value) {
-  const bg_color3 = [20, 52, 119];
-  const fg_color3 = [50, 193, 135];
-
-  let headSize = mouseX/(width/20);
-  let eyeSize = mouseY/(width/5);
-  let centerX = 0;
-  let Iy = -4
-  let distactBetweenEyes = 10
-  let MouthDrop = 7
-  
-  // rotation in degrees
-  angleMode(DEGREES);
-  rotate(tilt_value);
-
- // head
-  strokeWeight(width/1000);
+class Moa {
+  constructor (island, habitat, sizeMin, sizeMax, bill, plumage, species){
+    
+    this.island   = island;
+    this.habitat  = habitat;
+    this.sizeMin  = sizeMin;
+    this.sizeMax  = sizeMax;
+    this.bill     = bill;
+    this.plumage  = plumage;
+    this.species  = species;
+  }
+  show(x,y){
+  //  base colour depends on island
+  //  secondary colour depends on habitat
+  //  noise mapped between sizemin and sizemax
+  let size = random(this.sizeMin, this.sizeMax);
+  push();
+  noFill();
   stroke(0);
-  fill(fg_color3);
-  ellipse(centerX, 0, headSize, headSize);
-
-  // 2 traditonal eyes
-  if (eye_value === 1 || eye_value == 3) {
-    fill(bg_color3);
-    ellipse(centerX, Iy, eyeSize-1,eyeSize);
-   
+  
+  strokeWeight(.005);
+  for(let i = 0; i < 20; i++){
+  ellipse(x+(size*.001),y+(size*.001),size * (i*.02),size * (i*.02));
+  stroke(255);
+  ellipse(x,y,size * (i*.04),size * (i*.04));
   }
-// middle eye
-  if (eye_value >= 2) {
-    fill(bg_color3);
-    ellipse(centerX - distactBetweenEyes, Iy, eyeSize);
-    ellipse(centerX + distactBetweenEyes, Iy, eyeSize );
-  }
+  pop();
+  push();
 
-  // mouth
-  fill(bg_color3);
-  ellipse(centerX, Iy + MouthDrop, distactBetweenEyes, mouth_value);
+  fill(0);
+  textSize(0.14);
+  text(this.species,0,0+(height*.001));
+  pop();
+  };
 }
 
 
-function simplePurpleFace() {
-  fill(234, 122, 244);
-  noStroke();
-  // head
-  ellipse(0, 0, 20);
-  // eyes
-  fill(255, 217, 114);
-  ellipse(-3, -3, 3);
-  ellipse( 3, -3, 3);
-}
+moariki           = new Moa(  "S+N",  "W",      .40, .50,   "short rounded",    "shaggy",   "Anomalopteryx didiformis"  );
+moaHakahaka       = new Moa(  "S+N",  "D",      1.00, 1.20,   "short pointed",    "shaggy",   "Emeus gravis"              );
+moaNunui          = new Moa(  "S",    "S+W+D",  2.40, 3.60,   "robust rounded",   "streaky",  "Dinornis robustus"         );
+moaWaewaeTaumaha  = new Moa(  "S",    "D",      1.00, 1.20,   "short curved",     "shaggy",   "Pachyornis elephantopus"   );
+moaMomoua         = new Moa(  "S",    "D",      0.70, 1.00,   "robust curved",    "shaggy",   "Emeus crassus"             );
+moaKoukou         = new Moa(  "S",    "S",      1.20, 1.50,   "robust pointed",   "crested",  "Pachyornis australis"      );
+moaPukepuke       = new Moa(  "S",    "S",      0.65, 0.95,   "short curved",     "mottled",  "Megalopteryx didinus"      );
+kuranui           = new Moa(  "N",    "W",      2.40, 3.00,   "robust curved",    "shaggy",   "Dinornis novazealandiae"   );
+moaRuarangi       = new Moa(  "N",    "D",      0.40, 0.55,   "short pointed",    "shaggy",   "Pachyornis geranoides"     );
 
-/*
- * thinness_value ranges from 0-100 and indicates how thin the face is
- */
-function blockyFace(thinness_value) {
-  // head
-  noStroke();
-  fill(134, 19, 136);
-  let head_width = map(thinness_value, 0, 100, 8, 20);
-  rect(-head_width/2, -9, head_width, 18);
- 
 
-  // eyes
-  fill(234, 122, 244);
-  ellipse(-2, -4, 1);
-  ellipse( 2, -4, 1);
-}
+
+
+
