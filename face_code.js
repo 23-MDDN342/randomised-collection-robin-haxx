@@ -45,7 +45,7 @@ class Moa {
   
   strokeWeight(.005);
   for(let i = 0; i < 20; i++){
-  ellipse(x+(size*.001),y+(size*.001),size * (i*.02),size * (i*.02));
+  ellipse(x+(size*.001),y+(size*.001),size * (i*.03),size * (i*.015));
   stroke(255);
   ellipse(x,y,size * (i*.04),size * (i*.04));
   }
@@ -55,6 +55,7 @@ class Moa {
   fill(0);
   textSize(0.14);
   text(this.species,0,0+(height*.001));
+  text("height: " + this.sizeMin + " to " + this.sizeMax + " m",0,0+(height*.0015));
   pop();
   };
 }

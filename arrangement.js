@@ -6,10 +6,10 @@ const canvasHeight = 500;
 let curRandomSeed = 0;
 
 let lastSwapTime = 0;
-const millisPerSwap = 3000;
+const millisPerSwap = 5000;
 
 // global variables for colors
-const bg_color1 = [151, 22, 19];
+const bg_color1 = [71, 122, 89];
 
 function setup () {
   // create the drawing canvas, save the canvas element
@@ -20,6 +20,8 @@ function setup () {
 
   // rotation in degrees
   angleMode(DEGREES);
+
+  textAlign(CENTER);
 }
 
 function changeRandomSeed() {
@@ -53,23 +55,47 @@ function draw () {
       let y = h/2 + h*i;
       let x = w/2 + w*j;
      
-        // center face
-        let eye_value = int(random(2,4));
-        let tilt_value = random(-45, 45);
-        let mouth_value = random(3,4);
-        let is_cyclops = random(0, 100);
-
-        if(is_cyclops < 10) {
-          eye_value = 1;
-          tilt_value = random(-5, 5);
-          mouth_value = random(0, 1.7);
-        }
 
         push();
         translate(x, y);
-        scale(w/25, h/25);
+        scale(w * .5, h * .5);
         
-        moaWaewaeTaumaha.show(0,0);
+
+        // I should have all these Moa instantiations in an array to just pull length from
+        // this statement has to be updated as well anyway unless I want to think reeeeally hard
+        // the amount of known moa species isn't changing before handin..
+        switch (ceil(random(0,9))){
+          case 1:
+            moariki.show(0,0);
+            break;
+          case 2:
+            moaHakahaka.show(0,0);
+            break;
+          case 3:
+            moaNunui.show(0,0);
+            break;
+          case 4:
+            moaWaewaeTaumaha.show(0,0);
+            break;
+          case 5:
+            moaMomoua.show(0,0);
+            break;
+          case 6:
+            moaKoukou.show(0,0);
+            break;
+          case 7:
+            moaPukepuke.show(0,0);
+            break;
+          case 8:
+            kuranui.show(0,0);
+            break;
+          case 9:
+            moaRuarangi.show(0,0);
+            break;
+          default: 
+            console.log("for some reason, the randomness generator for species selection returned a really weird value");
+        }
+        
         pop();
       
     }
