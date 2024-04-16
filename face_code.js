@@ -43,11 +43,19 @@ class Moa {
   noFill();
   stroke(0);
   
-  strokeWeight(.005);
+  
   for(let i = 0; i < 20; i++){
+  strokeWeight(size*.003);
   ellipse(x+(size*.001),y+(size*.001),size * (i*.03),size * (i*.015));
   stroke(255);
-  ellipse(x,y,size * (i*.04),size * (i*.04));
+  ellipse(x,y,size * (i*.04),size * (i*.03));
+  stroke(bg_color1);
+  strokeWeight(size*.004);
+  ellipse(x,y,size * (i*.041),size * (i*.035));
+  ellipse(x,y,size * (i*.041),size * (i*.045));
+  //stroke(0);
+  ellipse(x-(size*.24),y-(size*.1),size* (i*.01), size * (i*.01));
+  ellipse(x+(size*.24),y-(size*.1),size* (i*.01), size * (i*.01));
   }
   pop();
   push();
