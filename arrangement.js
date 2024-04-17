@@ -6,10 +6,10 @@ const canvasHeight = 500;
 let curRandomSeed = 0;
 
 let lastSwapTime = 0;
-const millisPerSwap = 5000;
+const millisPerSwap = 20000;
 
 // global variables for colors
-const bg_color1 = [71, 122, 89];
+const bg_color1 = [52, 110, 69];
 
 function setup () {
   // create the drawing canvas, save the canvas element
@@ -44,14 +44,14 @@ function draw () {
   randomSeed(curRandomSeed);
 
   // clear screen
-  background(bg_color1);
+  background(255);
   noStroke();
 
   // draw a 7x4 grid of faces
-  let w = canvasWidth / 7;
-  let h = canvasHeight / 4;
-  for(let i=0; i<4; i++) {
-    for(let j=0; j<7; j++) {
+  let w = canvasWidth / 6;
+  let h = canvasHeight / 3;
+  for(let i=0; i<3; i++) {
+    for(let j=0; j<6; j++) {
       let y = h/2 + h*i;
       let x = w/2 + w*j;
      
@@ -64,37 +64,8 @@ function draw () {
         // I should have all these Moa instantiations in an array to just pull length from
         // this statement has to be updated as well anyway unless I want to think reeeeally hard
         // the amount of known moa species isn't changing before handin..
-        switch (ceil(random(0,9))){
-          case 1:
-            moariki.show(0,0);
-            break;
-          case 2:
-            moaHakahaka.show(0,0);
-            break;
-          case 3:
-            moaNunui.show(0,0);
-            break;
-          case 4:
-            moaWaewaeTaumaha.show(0,0);
-            break;
-          case 5:
-            moaMomoua.show(0,0);
-            break;
-          case 6:
-            moaKoukou.show(0,0);
-            break;
-          case 7:
-            moaPukepuke.show(0,0);
-            break;
-          case 8:
-            kuranui.show(0,0);
-            break;
-          case 9:
-            moaRuarangi.show(0,0);
-            break;
-          default: 
-            console.log("for some reason, the randomness generator for species selection returned a really weird value");
-        }
+        let mode = ceil(random(0,9));
+        modeSelect(mode);
         
         pop();
       

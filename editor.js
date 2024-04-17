@@ -4,7 +4,7 @@
 
 const canvasWidth = 960;
 const canvasHeight = 500;
-const bg_color = [71, 122, 119];
+const bg_color1 = [71, 122, 119];
 let slider1, slider2, slider3, slider4, slider5;
 let slider6, slider7, slider8, slider9, slider10;
 let faceSelector;
@@ -43,11 +43,19 @@ function setup () {
   faceGuideCheckbox.parent('checkbox1Container');
 
   faceSelector = createSelect();
-  faceSelector.option('1');
-  faceSelector.option('2');
-  faceSelector.option('3');
-  faceSelector.value('1');
+  faceSelector.option(1);
+  faceSelector.option(2);
+  faceSelector.option(3);
+  faceSelector.option(4);
+  faceSelector.option(5);
+  faceSelector.option(6);
+  faceSelector.option(7);
+  faceSelector.option(8);
+  faceSelector.option(9);
+  faceSelector.value(1);
   faceSelector.parent('selector1Container');
+
+  textAlign(CENTER);
 }
 
 
@@ -55,9 +63,10 @@ function setup () {
 function draw () {
   strokeWeight(0.2);
 
-  let mode = faceSelector.value();
+  let mode = faceSelector.value(); // please dont tell me javascript is converting this int to a string
+  console.log(faceSelector.value());
 
-  background(bg_color);
+  background(255);
 
   let s1 = slider1.value();
   let s2 = slider2.value();
@@ -74,7 +83,7 @@ function draw () {
 
   // use same size / y_pos for all faces
   let face_size = canvasWidth / 5;
-  let face_scale = face_size / 10;
+  let face_scale = face_size ;
   let face_y = height / 2;
   let face_x = width / 2;
 
@@ -83,17 +92,9 @@ function draw () {
   scale(face_scale);
 
   push();
-  if (mode == '1') {
-    moaWaewaeTaumaha.show(0,0);
-  }
 
-  if (mode == '2') {
-     // let slider value 1 indicate thinness
-     moariki.show(0,0);
-  }
-  if (mode == '3') {
-    moaNunui.show(0,0);
-  }
+
+  modeSelect(mode);
 
   pop();
 
