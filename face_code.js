@@ -3,6 +3,11 @@ let northIslandCol = [60,60,40];
 let southIslandCol = [170,150,110];
 let bothIslandsCol = [150,130,0];
 
+let dryForestCol =   [28, 156, 77];
+let wetForestCol =   [28, 109, 156];
+let supalpineCol =   [178, 46, 255];
+let allHabitatsCol = [250, 96, 252];
+
 // declaring variables that will be defined as instances of the Moa class
 let moariki,
 moaHakahaka,
@@ -27,6 +32,7 @@ class Moa {
     this.plumage  = _plumage;
     this.species  = _species;
   }
+
   show(x,y){
     let islandCol;
     let habitatCol;
@@ -44,6 +50,20 @@ class Moa {
   }
 
   //  secondary colour depends on habitat
+
+  //  feature change based on habitat
+
+  if (this.habitat == "D"){
+      habitatCol = dryForestCol;
+  } else if (this.habitat == "W") {
+      habitatCol = wetForestCol;
+  } else if (this.habitat == "S") {
+      habitatCol = supalpineCol;
+  } else if (this.habitat == "S+W+D"){
+      habitatCol = allHabitatsCol;
+  } else {
+    console.log("unexpected habitat value for Moa class!");
+  }
   //  noise mapped between sizemin and sizemax
   let size = random(this.sizeMin, this.sizeMax);
   push();
@@ -53,7 +73,8 @@ class Moa {
   for(let i = 0; i < 20; i++){
     strokeWeight(size*.004);
     //ellipse(x+(size*.001),y+(size*.001),size * (i*.03),size * (i*.015));
-    stroke(islandCol);
+    //let combinedCol = lerpColor(islandCol,habitatCol,0.2);
+    stroke(habitatCol);
     //ellipse(x,y,size * (i*.025),size * (i*.03));
     ellipse(x,y-(size*.08),size * (i*.028),size * (i*.018));
     stroke(255);
