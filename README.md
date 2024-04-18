@@ -1,5 +1,7 @@
-latest update: 'switched' over to arrangement.js file and set up random distribution of 9 species.
-improved some glaring issues and made things as plain as possible to read
+latest update: Island colour variable! 
+brown = south/stewart
+grey = north
+gold = all
 
 Initial stages!
 I'm building an object-oriented system to support randomly arranged/ naturally varying illustrations of NZ's 9 moa species. Currently I have created a class template.

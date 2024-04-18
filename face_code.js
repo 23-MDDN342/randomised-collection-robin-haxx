@@ -1,18 +1,9 @@
-/*
- * This file should contain code that draws your faces.
- *
- * Each function takes parameters and draws a face that is within
- * the bounding box (-10, -10) to (10, 10).
- *
- * These functions are used by your final arrangement of faces as well as the face editor.
- */
+// I'll try to keep all the colours in use up here.
+let northIslandCol = [60,60,40];
+let southIslandCol = [170,150,110];
+let bothIslandsCol = [150,130,0];
 
-
-/*
- * tilt_value is in degrees
- * eye_value is an integer number of eyes: either 0, 1, 2, or 3
- * mouth_value is how open the mouth is and should generally range from 0.5 to 10
- */
+// declaring variables that will be defined as instances of the Moa class
 let moariki,
 moaHakahaka,
 moaNunui,
@@ -25,7 +16,7 @@ moaRuarangi;
 
 class Moa {
   constructor (_teReo, _english, _island, _habitat, _sizeMin, _sizeMax, _bill, _plumage, _species){
-    
+    // It made more sense for me to prefix these temporary variables with an underscore. All they do is pass the "this." properties into the class via the constructor.
     this.teReo    = _teReo;
     this.english  = _english;
     this.island   = _island;
@@ -37,7 +28,21 @@ class Moa {
     this.species  = _species;
   }
   show(x,y){
+    let islandCol;
+    let habitatCol;
+
   //  base colour depends on island
+  if (this.island == "N"){
+      islandCol = northIslandCol;
+  } else if (this.island == "S") {
+      islandCol = southIslandCol;
+  } else if (this.island == "S+N"){
+      islandCol = bothIslandsCol;
+  } else {
+      islandCol = [255,255,255];
+      console.log("unexpected island value for Moa class!");
+  }
+
   //  secondary colour depends on habitat
   //  noise mapped between sizemin and sizemax
   let size = random(this.sizeMin, this.sizeMax);
@@ -45,17 +50,15 @@ class Moa {
   noFill();
   stroke(0);
   
-  
   for(let i = 0; i < 20; i++){
     strokeWeight(size*.004);
     //ellipse(x+(size*.001),y+(size*.001),size * (i*.03),size * (i*.015));
-    stroke(bg_color1);
+    stroke(islandCol);
     //ellipse(x,y,size * (i*.025),size * (i*.03));
     ellipse(x,y-(size*.08),size * (i*.028),size * (i*.018));
     stroke(255);
     strokeWeight(size*.006);
     ellipse(x,y+(size*.22),size * (i*.041),size * (i*.035));
-    
     ellipse(x,y+(size*.29),size * (i*.041),size * (i*.045));//beak btm
     
     push();
@@ -71,27 +74,29 @@ class Moa {
 
   fill(0);
   textSize(0.14);
-  text(this.teReo, 0,0+ (height * .001));
-  text(this.english, 0,0+ (height * .0013));
+  text(this.teReo, 0,0+ (height * .0009));
+  text(this.english, 0,0+ (height * .0012));
   
-  text("height: " + this.sizeMin + " to " + this.sizeMax + " m",0,0+(height*.0017));
-  text(this.species,0,0+ (height * .002));
+  text("height: " + this.sizeMin + " to " + this.sizeMax + " m",0,0+(height*.0015));
+  text(this.species,0,0+ (height * .0018));
   pop();
   };
 }
-
 
 moariki           = new Moa(  "Moariki",            "Little Bush Moa",        "S+N",  "W",      0.55, 1.10,   "short rounded",    "shaggy",   "Anomalopteryx didiformis"  );
 moaHakahaka       = new Moa(  "Moa Hakahaka",       "Stout- Legged Moa",      "S+N",  "D",      1.00, 1.20,   "short pointed",    "shaggy",   "Emeus gravis"              );
 moaNunui          = new Moa(  "Moa Nunui",          "South Island Giant Moa", "S",    "S+W+D",  2.40, 3.60,   "robust rounded",   "streaky",  "Dinornis robustus"         );
 moaWaewaeTaumaha  = new Moa(  "Moa Waewae Taumaha", "Heavy- Footed Moa",      "S",    "D",      1.00, 1.20,   "short curved",     "shaggy",   "Pachyornis elephantopus"   );
-moaMomona         = new Moa(  "Moa Momona",         "Eastern Moa",            "S",    "D",      0.70, 1.00,   "robust curved",    "shaggy",   "Emeus crassus"             );
+moaMomona         = new Moa(  "Moa Mōmona",         "Eastern Moa",            "S",    "D",      0.70, 1.00,   "robust curved",    "shaggy",   "Emeus crassus"             );
 moaKoukou         = new Moa(  "Moa Koukou",         "Crested Moa",            "S",    "S",      1.20, 1.50,   "robust pointed",   "crested",  "Pachyornis australis"      );
 moaPukepuke       = new Moa(  "Moa Pukepuke",       "Upland Moa",             "S",    "S",      0.65, 0.95,   "short curved",     "mottled",  "Megalopteryx didinus"      );
 kuranui           = new Moa(  "Kuranui",            "North Island Giant Moa", "N",    "W",      2.40, 3.00,   "robust curved",    "shaggy",   "Dinornis novazealandiae"   );
 moaRuarangi       = new Moa(  "Moa Ruarangi",       "Mantell's Moa",          "N",    "D",      0.55, 1.30,   "short pointed",    "shaggy",   "Pachyornis geranoides"     );
 
+// function to show species based on generated 1-9 value
+
 function modeSelect(mode){
+
 switch (mode){
   case 1:
   case '1': // I really really hate JavaScript for this sometimes. 
@@ -132,10 +137,14 @@ switch (mode){
     break;
   default: 
     console.log("for some reason, the randomness generator for species selection returned a really weird value");
-    //this debug message was a very good call
+    // this debug message was a very good call. The amount of times I've been spammed with it in the console output..
 }
 
 }
+
+
+
+
 
 
 
