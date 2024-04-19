@@ -1,17 +1,19 @@
-latest update: Island colour variable! 
-brown = south/stewart
-grey = north
-gold = all
+latest updates: 
+1. I implemented the system for habitat- based colour during a coworking session with the Protostars cohort 
+(Also tried my best at doing an explainer video of the code so far https://www.youtube.com/watch?v=Reh5eLW4csU)
+
+Since then, I've hooked up a simple way to use both variables at once, drawing a colourful "outline" for biome and keeping the Island- dependent base colour. Keeping these two colour sets distinct is the important part, so a more realistic secondary colour may not be the best idea.
+
+Also, I got rid of the two rightmost columns for a title and key! Most aspects of which are tied directly to the existing data structure, so for example colour changes and item rearrangement will be directly reflected by the key, and adding more entries to the key will only need minor formatting changes. Feeling like a proper web dev here.
 
 Initial stages!
-I'm building an object-oriented system to support randomly arranged/ naturally varying illustrations of NZ's 9 moa species. Currently I have created a class template.
+This project is an object-oriented system of randomly arranged/ naturally varying illustrations of NZ's 9 moa species. 
 
-Here is the code I built from the ground up before trying to adapt it to this project file
+
+initial moa code prototype
 https://editor.p5js.org/verteks/sketches/6kIKr8cT1t
 
-I tried to build a flock array (I'm calling this a Kahui) from scratch to understand how to encapsulate this code in a class for flocking properties.. 
-I fixed the issues I had with class instantiation, and realised this isn't very necessary. 
-This is very much still in progress, and I would rather apply it to the generator system here is I can.
+early "kahui" flock array prototype (did not end up working)
 https://editor.p5js.org/verteks/sketches/MvoV6HDCg
 
 

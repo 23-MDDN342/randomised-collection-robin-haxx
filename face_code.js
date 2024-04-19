@@ -1,6 +1,6 @@
 // I'll try to keep all the colours in use up here.
 let northIslandCol = [60,60,40];
-let southIslandCol = [170,150,110];
+let southIslandCol = [140,100,70];
 let bothIslandsCol = [150,130,0];
 
 let dryForestCol =   [28, 156, 77];
@@ -71,12 +71,15 @@ class Moa {
   stroke(0);
   
   for(let i = 0; i < 20; i++){
-    strokeWeight(size*.004);
+    strokeWeight(size*.009);
     //ellipse(x+(size*.001),y+(size*.001),size * (i*.03),size * (i*.015));
     //let combinedCol = lerpColor(islandCol,habitatCol,0.2);
     stroke(habitatCol);
     //ellipse(x,y,size * (i*.025),size * (i*.03));
-    ellipse(x,y-(size*.08),size * (i*.028),size * (i*.018));
+    ellipse(x,y-(size*.08),size * (i*.028),size * (i*.017));
+    strokeWeight(size*.01);
+    stroke(islandCol);
+    ellipse(x,y-(size*.08),size * (i*.026),size * (i*.016));
     stroke(255);
     strokeWeight(size*.006);
     ellipse(x,y+(size*.22),size * (i*.041),size * (i*.035));
@@ -86,7 +89,7 @@ class Moa {
     strokeWeight(size*.001);
     ellipse(x,y-(size*.19),size * (i*.010),size * (i*.015));//beak top
     pop();
-    //stroke(0);
+    
     ellipse(x-(size*.2),y-(size*.15),size* (i*.005), size * (i*.004));
     ellipse(x+(size*.2),y-(size*.15),size* (i*.005), size * (i*.004));
   }

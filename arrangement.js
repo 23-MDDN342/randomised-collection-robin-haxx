@@ -8,8 +8,27 @@ let curRandomSeed = 0;
 let lastSwapTime = 0;
 const millisPerSwap = 20000;
 
-// global variables for colors
-const bg_color1 = [52, 110, 69];
+let title;
+
+const islandsReo = ["Aotearoa", "Te Ika-a-Māui", "Te Waipounamu"];
+const islandsEng = ["All New Zealand", "North Island", "South Island"];
+const habitatEng = ["Widespread", "Subalpine / Highland", "Wet forest / Podocarp", "Dry forest / Lowland"];
+// I'm basically using key:value pairs for the colour variables here, this isn't *best* practise for how to do that.
+
+
+// Colours specific for this arrangement mode
+const keyBorderCol = [70,70,70];
+const keyTextCol =   [40,40,40];
+const islandArray =  [bothIslandsCol, northIslandCol, southIslandCol];
+const habitatArray = [allHabitatsCol, supalpineCol, wetForestCol, dryForestCol];
+// colour variables are global - moa colours are stored at the top of face_code.js
+// for the key, I favoured using an array to call from than entering specific variable- assigned values.
+// This makes sense to me but the better practise would probably to have this more organised approach be standardized across the codebase.
+
+function preload(){
+  // TEXT TITLE BLOCK (font: adine kirnberg alternative)
+  title = loadImage('title.png');
+}
 
 function setup () {
   // create the drawing canvas, save the canvas element
@@ -20,8 +39,8 @@ function setup () {
 
   // rotation in degrees
   angleMode(DEGREES);
-
   textAlign(CENTER);
+  rectMode(CORNER);
 }
 
 function changeRandomSeed() {
@@ -51,7 +70,7 @@ function draw () {
   let w = canvasWidth / 6;
   let h = canvasHeight / 3;
   for(let i=0; i<3; i++) {
-    for(let j=0; j<6; j++) {
+    for(let j=0; j<4; j++) {
       let y = h/2 + h*i;
       let x = w/2 + w*j;
      
@@ -71,6 +90,65 @@ function draw () {
       
     }
   }
+
+
+  const lineSpace = (height * 0.006);
+  const islandsCount = islandsEng.length;
+  const habitatCount = habitatEng.length;
+
+  image(title,width- (w*2) + (lineSpace * 3),lineSpace * 16, height * .6, height *.4);
+
+  // code for drawing the key
+  push();
+  textAlign(LEFT);
+  stroke(keyBorderCol);
+  translate(width - (w*2), h * 1.6);
+  translate(lineSpace,lineSpace);
+  rect(0,0, (w*2) - (lineSpace*2), (h*1.4) - (lineSpace * 2));
+  translate(lineSpace,lineSpace);
+  rect(0,0, (w*2) - (lineSpace*4), (h*1.4) - (lineSpace * 4));
+
+  translate(lineSpace*4,lineSpace*6);
+  // a better approach would be to store colours in an array, and draw these elements via a for loop using the arrays' lengths
+  // (if I wanted to support quick scalability with more colours)
+  noStroke();
+  push();
+  for(let i = 0; i <= islandsCount; i++){
+    if(i == 0){
+      text("ISLAND",lineSpace*10,lineSpace*4);
+    }else{
+
+      translate(0, lineSpace * 12); //colour sample spacing
+      fill(keyTextCol);
+      text(islandsReo[i-1],lineSpace*10,lineSpace*4);
+      text(islandsEng[i-1],lineSpace*10,lineSpace*8);
+      fill(islandArray[i-1]);
+      rect(0,0,lineSpace*8,lineSpace*8);
+    }
+  }
+  pop();
+
+  push();
+  translate (lineSpace*46,0);
+  for(let i = 0; i <= habitatCount; i++){
+    if (i == 0){
+      text("HABITAT", lineSpace * 10, lineSpace * 4);
+    } else {
+      
+      translate(0, lineSpace * 12)
+      fill(keyTextCol);
+      text(habitatEng[i-1],lineSpace*10,lineSpace*4);
+      fill(habitatArray[i-1]);
+      rect(0,0,lineSpace*8,lineSpace*8);
+    }
+
+  }
+  pop();
+
+
+  pop();
+
+
 }
 
 function keyTyped() {

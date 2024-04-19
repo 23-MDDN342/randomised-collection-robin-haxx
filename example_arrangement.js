@@ -2,12 +2,15 @@
  * This program draws your arrangement of faces on the canvas.
  */
 
+
 const canvasWidth = 960;
 const canvasHeight = 500;
 let curRandomSeed = 0;
 
 let lastSwapTime = 0;
 const millisPerSwap = 3000;
+
+
 
 function setup () {
   // create the drawing canvas, save the canvas element
