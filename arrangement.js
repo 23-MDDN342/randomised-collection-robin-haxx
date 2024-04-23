@@ -61,7 +61,6 @@ function changeRandomSeed() {
 }
 
 
-
 function mouseClicked() {
   changeRandomSeed();
 }
@@ -78,74 +77,33 @@ function draw () {
   background(255);
   noStroke();
 
-  // draw a 7x4 grid of faces
+  // draw a 6x3 grid of faces
   let w = canvasWidth / 6;
   let h = canvasHeight / 3;
   for(let i=0; i<3; i++) {
     for(let j=0; j<4; j++) {
       let y = h/2 + h*i;
       let x = w/2 + w*j;
-     
 
         push();
         translate(x, y);
         scale(w * .5, h * .5);
         
         let mode;
-        // pull a 1-100 percentage
-        let speciesChance = percentage();
-        let popSoFar;
-        
-        // for (let m = 0; m < allMoa.length; m++){
-        //   popSoFar += allMoa[i].percentage;
-        //   if (speciesChance < popSoFar){
-        //     mode = m + 1;
-        //   } else {
-        //     return;
-        //   }
-        // }
-          
-        // for (let m = 0; m < allMoa.length; m++){
-        //   popSoFar += allMoa [m].percentage;
-        //   if (speciesChance < popSoFar + allMoa[m].percentage){
-        //        mode = m + 1;
-        //   }else {
-        //     popSoFar += allMoa [m].percentage;
-        //   }
+        // grab a random 1-100 int percentage
+        let speciesChance = percentage(); 
+        let totalChance = 0;
 
-        // }
-
-        // this feels hacky but I got the code working for species chance!
-        // I basically want to rewrite this as a small block of code that iterates through allMoa, adds percentage chance, sets mode.
-        if (speciesChance < moariki.percentage){
-          mode = 1;
-
-        }else if (speciesChance < moariki.percentage + moaHakahaka.percentage){
-          mode = 2;
-        }else if (speciesChance < moariki.percentage + moaHakahaka.percentage + moaNunui.percentage){
-          mode = 3;
-        }else if (speciesChance < moariki.percentage + moaHakahaka.percentage + moaNunui.percentage + moaWaewaeTaumaha.percentage){
-          mode = 4;
-        }else if (speciesChance < moariki.percentage + moaHakahaka.percentage + moaNunui.percentage + moaWaewaeTaumaha.percentage + moaMomona.percentage){
-          mode = 5;
-        }else if (speciesChance < moariki.percentage + moaHakahaka.percentage + moaNunui.percentage + moaWaewaeTaumaha.percentage + moaMomona.percentage + moaKoukou.percentage){
-          mode = 6;
-        }else if (speciesChance < moariki.percentage + moaHakahaka.percentage + moaNunui.percentage + moaWaewaeTaumaha.percentage + moaMomona.percentage + moaKoukou.percentage + moaPukepuke.percentage ){
-          mode = 7;
-        }else if (speciesChance < moariki.percentage + moaHakahaka.percentage + moaNunui.percentage + moaWaewaeTaumaha.percentage + moaMomona.percentage + moaKoukou.percentage + moaPukepuke.percentage + kuranui.percentage){
-          mode = 8;
-        }else if (speciesChance <= moariki.percentage + moaHakahaka.percentage + moaNunui.percentage + moaWaewaeTaumaha.percentage + moaMomona.percentage + moaKoukou.percentage + moaPukepuke.percentage + kuranui.percentage +moaRuarangi.percentage){
-          mode = 9;
-        }else {
-          console.log ("unexpected speciesChance variable entered!");
+        for (let k = 0; k < allMoa.length; k++){                    // if the right condition is met, set the mode and STOP THE LOOP!
+          if (speciesChance < totalChance + allMoa[k].percentage){  // (e.g. 32 will increment totalChance by 17, then 5, then 35 (total 57) then condition will be met and mode 3 will be drawn)
+            mode = k+1;                                             // arrays count from 0, my "mode selector" ranges from 1 to 9
+            break;
+          } else {
+            totalChance += allMoa[k].percentage;                    // update total chance and continue the loop process
+          }
         }
 
-
-        
-
-
-
-        modeSelect(mode);
+        modeSelect(mode); // when finished finding "mode" value, this calls the "show" function for the corresponding "mode"
         
         pop();
       
@@ -161,57 +119,54 @@ function draw () {
 
   // code for drawing the key
   push();
-  textAlign(LEFT);
-  stroke(keyBorderCol);
-  translate(width - (w*2), h * 1.67);  //  overall placement of key
-  translate(lineSpace,lineSpace);     //  padding
-  rect(0,0, (w*2) - (lineSpace*2), (h*1.3) - (lineSpace * 2));
-  translate(lineSpace,lineSpace);
-  rect(0,0, (w*2) - (lineSpace*4), (h*1.3) - (lineSpace * 4));
+    textAlign(LEFT);
+    stroke(keyBorderCol);
+    translate(width - (w*2), h * 1.67);  //  overall placement of key
+    translate(lineSpace,lineSpace);     //  padding
+    rect(0,0, (w*2) - (lineSpace*2), (h*1.3) - (lineSpace * 2));
+    translate(lineSpace,lineSpace);
+    rect(0,0, (w*2) - (lineSpace*4), (h*1.3) - (lineSpace * 4));
 
-  translate(lineSpace*4,lineSpace*6);
-  // a better approach would be to store colours in an array, and draw these elements via a for loop using the arrays' lengths
-  // (if I wanted to support quick scalability with more colours)
-  noStroke();
-  
-  push();
-  for(let i = 0; i <= islandsCount; i++){
-    if(i == 0){
-      textFont(georgiaB);
-      text("ISLAND",lineSpace*10,lineSpace*4);
-    }else{
-      textFont(georgia);
-      translate(0, lineSpace * 12); //colour sample spacing
-      fill(keyTextCol);
-      text(islandsReo[i-1],lineSpace*10,lineSpace*4);
-      text(islandsEng[i-1],lineSpace*10,lineSpace*8);
-      fill(islandArray[i-1]);
-      rect(0,0,lineSpace*8,lineSpace*8);
-    }
-  }
-  pop();
+    translate(lineSpace*4,lineSpace*6);
+    // a better approach would be to store colours in an array, and draw these elements via a for loop using the arrays' lengths
+    // (if I wanted to support quick scalability with more colours)
+    noStroke();
+    
+    push();
+      for(let i = 0; i <= islandsCount; i++){
+        if(i == 0){
+          textFont(georgiaB);
+          text("ISLAND",lineSpace*10,lineSpace*4);
+        }else{
+          textFont(georgia);
+          translate(0, lineSpace * 12); //colour sample spacing
+          fill(keyTextCol);
+          text(islandsReo[i-1],lineSpace*10,lineSpace*4);
+          text(islandsEng[i-1],lineSpace*10,lineSpace*8);
+          fill(islandArray[i-1]);
+          rect(0,0,lineSpace*8,lineSpace*8);
+        }
+      }
+    pop();
 
-  push();
-  translate (lineSpace*46,0);
-  for(let i = 0; i <= habitatCount; i++){
-    if (i == 0){
-      textFont(georgiaB);
-      text("HABITAT", lineSpace * 10, lineSpace * 4);
-    } else {
-      textFont(georgia);
-      translate(0, lineSpace * 12)
-      fill(keyTextCol);
-      text(habitatEng[i-1],lineSpace*10,lineSpace*4);
-      fill(habitatArray[i-1]);
-      rect(0,0,lineSpace*8,lineSpace*8);
-    }
-
-  }
-  pop();
-
+    push();
+      translate (lineSpace*46,0);
+      for(let i = 0; i <= habitatCount; i++){
+        if (i == 0){
+          textFont(georgiaB);
+          text("HABITAT", lineSpace * 10, lineSpace * 4);
+        } else {
+          textFont(georgia);
+          translate(0, lineSpace * 12)
+          fill(keyTextCol);
+          text(habitatEng[i-1],lineSpace*10,lineSpace*4);
+          fill(habitatArray[i-1]);
+          rect(0,0,lineSpace*8,lineSpace*8);
+        }
+      }
+    pop();
 
   pop();
-
 
 }
 

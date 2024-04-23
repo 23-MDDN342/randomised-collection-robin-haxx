@@ -1,5 +1,11 @@
 latest updates: 
-1. I implemented the system for habitat- based colour during a coworking session with the Protostars cohort 
+
+Population distribution is working! 
+I Identified a problem: My logic works under the assumption that generation is random each time, feeding in a random value which I can manipulate.
+This doesn't seem to entirely be the case; when the page is loaded, one or two moa on each arrangement will be "set" in place, so regenerating via clicking will only change their size (and whatever other within-species variation I code in.)
+I'm not entirely sure how this is happening, but the random seed funtions seem to result in weirdly predictable patterns.
+
+I implemented the system for habitat- based colour during a coworking session with the Protostars cohort 
 (Also tried my best at doing an explainer video of the code so far https://www.youtube.com/watch?v=Reh5eLW4csU)
 
 Since then, I've hooked up a simple way to use both variables at once, drawing a colourful "outline" for biome and keeping the Island- dependent base colour. Keeping these two colour sets distinct is the important part, so a more realistic secondary colour may not be the best idea.
