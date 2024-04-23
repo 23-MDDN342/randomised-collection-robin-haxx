@@ -79,11 +79,39 @@ function draw () {
         translate(x, y);
         scale(w * .5, h * .5);
         
+        let mode;
+        // pull a 1-100 percentage
+        let speciesChance = percentage();
+        
 
-        // I should have all these Moa instantiations in an array to just pull length from
-        // this statement has to be updated as well anyway unless I want to think reeeeally hard
-        // the amount of known moa species isn't changing before handin..
-        let mode = ceil(random(0,9));
+        // this feels hacky but I got the code working for species chance!
+        if (speciesChance < moariki.percentage){
+          mode = 1;
+        }else if (speciesChance < moariki.percentage + moaHakahaka.percentage){
+          mode = 2;
+        }else if (speciesChance < moariki.percentage + moaHakahaka.percentage + moaNunui.percentage){
+          mode = 3;
+        }else if (speciesChance < moariki.percentage + moaHakahaka.percentage + moaNunui.percentage + moaWaewaeTaumaha.percentage){
+          mode = 4;
+        }else if (speciesChance < moariki.percentage + moaHakahaka.percentage + moaNunui.percentage + moaWaewaeTaumaha.percentage + moaMomona.percentage){
+          mode = 5;
+        }else if (speciesChance < moariki.percentage + moaHakahaka.percentage + moaNunui.percentage + moaWaewaeTaumaha.percentage + moaMomona.percentage + moaKoukou.percentage){
+          mode = 6;
+        }else if (speciesChance < moariki.percentage + moaHakahaka.percentage + moaNunui.percentage + moaWaewaeTaumaha.percentage + moaMomona.percentage + moaKoukou.percentage + moaPukepuke.percentage ){
+          mode = 7;
+        }else if (speciesChance < moariki.percentage + moaHakahaka.percentage + moaNunui.percentage + moaWaewaeTaumaha.percentage + moaMomona.percentage + moaKoukou.percentage + moaPukepuke.percentage + kuranui.percentage){
+          mode = 8;
+        }else if (speciesChance <= moariki.percentage + moaHakahaka.percentage + moaNunui.percentage + moaWaewaeTaumaha.percentage + moaMomona.percentage + moaKoukou.percentage + moaPukepuke.percentage + kuranui.percentage +moaRuarangi.percentage){
+          mode = 9;
+        }else {
+          console.log ("unexpected speciesChance variable entered!");
+        }
+
+
+        
+
+
+
         modeSelect(mode);
         
         pop();

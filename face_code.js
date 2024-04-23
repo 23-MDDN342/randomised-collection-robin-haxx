@@ -20,17 +20,18 @@ kuranui,
 moaRuarangi;
 
 class Moa {
-  constructor (_teReo, _english, _island, _habitat, _sizeMin, _sizeMax, _bill, _plumage, _species){
+  constructor (_teReo, _english, _island, _habitat, _sizeMin, _sizeMax, _bill, _plumage, _species, _population){
     // It made more sense for me to prefix these temporary variables with an underscore. All they do is pass the "this." properties into the class via the constructor.
-    this.teReo    = _teReo;
-    this.english  = _english;
-    this.island   = _island;
-    this.habitat  = _habitat;
-    this.sizeMin  = _sizeMin;
-    this.sizeMax  = _sizeMax;
-    this.bill     = _bill;
-    this.plumage  = _plumage;
-    this.species  = _species;
+    this.teReo      = _teReo;
+    this.english    = _english;
+    this.island     = _island;
+    this.habitat    = _habitat;
+    this.sizeMin    = _sizeMin;
+    this.sizeMax    = _sizeMax;
+    this.bill       = _bill;
+    this.plumage    = _plumage;
+    this.species    = _species;
+    this.population = _population;
   }
 
   show(x,y){
@@ -107,15 +108,46 @@ class Moa {
   };
 }
 
-moariki           = new Moa(  "Moariki",            "Little Bush Moa",        "S+N",  "W",      0.55, 1.10,   "short rounded",    "shaggy",   "Anomalopteryx didiformis"  );
-moaHakahaka       = new Moa(  "Moa Hakahaka",       "Stout- Legged Moa",      "S+N",  "D",      1.00, 1.20,   "short pointed",    "shaggy",   "Emeus gravis"              );
-moaNunui          = new Moa(  "Moa Nunui",          "South Island Giant Moa", "S",    "S+W+D",  2.40, 3.60,   "robust rounded",   "streaky",  "Dinornis robustus"         );
-moaWaewaeTaumaha  = new Moa(  "Moa Waewae Taumaha", "Heavy- Footed Moa",      "S",    "D",      1.00, 1.20,   "short curved",     "shaggy",   "Pachyornis elephantopus"   );
-moaMomona         = new Moa(  "Moa Mōmona",         "Eastern Moa",            "S",    "D",      0.70, 1.00,   "robust curved",    "shaggy",   "Emeus crassus"             );
-moaKoukou         = new Moa(  "Moa Koukou",         "Crested Moa",            "S",    "S",      1.20, 1.50,   "robust pointed",   "crested",  "Pachyornis australis"      );
-moaPukepuke       = new Moa(  "Moa Pukepuke",       "Upland Moa",             "S",    "S",      0.65, 0.95,   "short curved",     "mottled",  "Megalopteryx didinus"      );
-kuranui           = new Moa(  "Kuranui",            "North Island Giant Moa", "N",    "W",      2.40, 3.00,   "robust curved",    "shaggy",   "Dinornis novazealandiae"   );
-moaRuarangi       = new Moa(  "Moa Ruarangi",       "Mantell's Moa",          "N",    "D",      0.55, 1.30,   "short pointed",    "shaggy",   "Pachyornis geranoides"     );
+moariki           = new Moa(  "Moariki",            "Little Bush Moa",        "S+N",  "W",      0.55, 1.10,   "short rounded",    "shaggy",   "Anomalopteryx didiformis"  , 400 );
+moaHakahaka       = new Moa(  "Moa Hakahaka",       "Stout- Legged Moa",      "S+N",  "D",      1.00, 1.20,   "short pointed",    "shaggy",   "Emeus gravis"              , 120 );
+moaNunui          = new Moa(  "Moa Nunui",          "South Island Giant Moa", "S",    "S+W+D",  2.40, 3.60,   "robust rounded",   "streaky",  "Dinornis robustus"         , 800 );
+moaWaewaeTaumaha  = new Moa(  "Moa Waewae Taumaha", "Heavy- Footed Moa",      "S",    "D",      1.00, 1.20,   "short curved",     "shaggy",   "Pachyornis elephantopus"   , 210 );
+moaMomona         = new Moa(  "Moa Mōmona",         "Eastern Moa",            "S",    "D",      0.70, 1.00,   "robust curved",    "shaggy",   "Emeus crassus"             , 270 );
+moaKoukou         = new Moa(  "Moa Koukou",         "Crested Moa",            "S",    "S",      1.20, 1.50,   "robust pointed",   "crested",  "Pachyornis australis"      , 30  );
+moaPukepuke       = new Moa(  "Moa Pukepuke",       "Upland Moa",             "S",    "S",      0.65, 0.95,   "short curved",     "mottled",  "Megalopteryx didinus"      , 100 );
+kuranui           = new Moa(  "Kuranui",            "North Island Giant Moa", "N",    "W",      2.40, 3.00,   "robust curved",    "shaggy",   "Dinornis novazealandiae"   , 310 );
+moaRuarangi       = new Moa(  "Moa Ruarangi",       "Mantell's Moa",          "N",    "D",      0.55, 1.30,   "short pointed",    "shaggy",   "Pachyornis geranoides"     , 14  );
+
+let allMoa = [moariki,moaHakahaka,moaNunui, moaWaewaeTaumaha, moaMomona, moaKoukou, moaPukepuke, kuranui, moaRuarangi];
+
+
+let totalPopulation = 0;
+
+  // what it says on the tin, iterates through all moa and adds up a total population count.
+  for (let i = 0; i < allMoa.length; i++){
+    totalPopulation += allMoa[i].population;
+    console.log(allMoa[i].teReo + " population: " + allMoa[i].population)
+  }
+
+  console.log("total: " + totalPopulation);
+
+  // appends a "percentage" chance to each Moa that represents its percentage in relation to total population.
+  for (let i = 0; i < allMoa.length; i++){
+    allMoa[i].percentage = (allMoa[i].population / totalPopulation) * 100;
+    console.log(allMoa[i].teReo + " makes up " + allMoa[i].percentage + "% of total Moa");
+  }
+  
+
+// function to use to map percentages to with conditional statements
+function percentage(){
+  return (int (random(1,100)));
+}
+
+// Note for a potential scalability improvement:
+// If the species "spreadsheet" was kept as an array, I could use its index/ length to map cumulative values.
+// For example, a "population" property for each species that could be added up and converted to the 1-100 value that defines distribution.
+// This would mean if I realise a population is more common, I can update its "population" value without having to rewrite the math for its 1-100 "chance".
+
 
 // function to show species based on generated 1-9 value
 
@@ -124,7 +156,7 @@ function modeSelect(mode){
 switch (mode){
   case 1:
   case '1': // I really really hate JavaScript for this sometimes. 
-              // the editor slider is converting these int values to single-character strings
+            // the editor slider is converting these int values to single-character strings
     moariki.show(0,0);
     break;
   case 2:
