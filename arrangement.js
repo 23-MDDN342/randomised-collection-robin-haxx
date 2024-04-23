@@ -5,10 +5,15 @@ const canvasWidth = 960;
 const canvasHeight = 500;
 let curRandomSeed = 0;
 
+
 let lastSwapTime = 0;
 const millisPerSwap = 20000;
 
 let title;
+let georgia,
+    georgiaB,
+    georgiaI,
+    georgiaZ;
 
 const islandsReo = ["Aotearoa", "Te Ika-a-Māui", "Te Waipounamu"];
 const islandsEng = ["All New Zealand", "North Island", "South Island"];
@@ -27,7 +32,13 @@ const habitatArray = [allHabitatsCol, supalpineCol, wetForestCol, dryForestCol];
 
 function preload(){
   // TEXT TITLE BLOCK (font: adine kirnberg alternative)
-  title = loadImage('title.png');
+  title =     loadImage('title.png');
+  // FONTS
+  georgia =   loadFont('fonts/georgia.ttf');
+  georgiaB =  loadFont('fonts/georgiab.ttf');
+  georgiaI =  loadFont('fonts/georgiai.ttf');
+  georgiaZ =  loadFont('fonts/georgiaz.ttf');
+
 }
 
 function setup () {
@@ -41,6 +52,7 @@ function setup () {
   angleMode(DEGREES);
   textAlign(CENTER);
   rectMode(CORNER);
+  textFont(georgia);
 }
 
 function changeRandomSeed() {
@@ -151,22 +163,24 @@ function draw () {
   push();
   textAlign(LEFT);
   stroke(keyBorderCol);
-  translate(width - (w*2), h * 1.6);
+  translate(width - (w*2), h * 1.67);  //  overall placement of key
+  translate(lineSpace,lineSpace);     //  padding
+  rect(0,0, (w*2) - (lineSpace*2), (h*1.3) - (lineSpace * 2));
   translate(lineSpace,lineSpace);
-  rect(0,0, (w*2) - (lineSpace*2), (h*1.4) - (lineSpace * 2));
-  translate(lineSpace,lineSpace);
-  rect(0,0, (w*2) - (lineSpace*4), (h*1.4) - (lineSpace * 4));
+  rect(0,0, (w*2) - (lineSpace*4), (h*1.3) - (lineSpace * 4));
 
   translate(lineSpace*4,lineSpace*6);
   // a better approach would be to store colours in an array, and draw these elements via a for loop using the arrays' lengths
   // (if I wanted to support quick scalability with more colours)
   noStroke();
+  
   push();
   for(let i = 0; i <= islandsCount; i++){
     if(i == 0){
+      textFont(georgiaB);
       text("ISLAND",lineSpace*10,lineSpace*4);
     }else{
-
+      textFont(georgia);
       translate(0, lineSpace * 12); //colour sample spacing
       fill(keyTextCol);
       text(islandsReo[i-1],lineSpace*10,lineSpace*4);
@@ -181,9 +195,10 @@ function draw () {
   translate (lineSpace*46,0);
   for(let i = 0; i <= habitatCount; i++){
     if (i == 0){
+      textFont(georgiaB);
       text("HABITAT", lineSpace * 10, lineSpace * 4);
     } else {
-      
+      textFont(georgia);
       translate(0, lineSpace * 12)
       fill(keyTextCol);
       text(habitatEng[i-1],lineSpace*10,lineSpace*4);

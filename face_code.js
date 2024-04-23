@@ -19,6 +19,8 @@ moaPukepuke,
 kuranui,
 moaRuarangi;
 
+
+
 class Moa {
   constructor (_teReo, _english, _island, _habitat, _sizeMin, _sizeMax, _bill, _plumage, _species, _population){
     // It made more sense for me to prefix these temporary variables with an underscore. All they do is pass the "this." properties into the class via the constructor.
@@ -89,20 +91,36 @@ class Moa {
     push();
     strokeWeight(size*.001);
     ellipse(x,y-(size*.19),size * (i*.010),size * (i*.015));//beak top
+    stroke(habitatCol);
+    scale(1 + (i*.05));
+    
+    ellipse(0,y-(size*.15),size* (i*.02), size * (i*.0003));
     pop();
     
     ellipse(x-(size*.2),y-(size*.15),size* (i*.005), size * (i*.004));
     ellipse(x+(size*.2),y-(size*.15),size* (i*.005), size * (i*.004));
+
+    if (this.plumage == "crested"){
+      stroke(habitatCol);
+      //rect(0,0,size* (i*.01), size * (i*.01));
+      //ellipse(0,y-(size*.25),size* (i*.005), size * (i*.004));
+
+    }
+
+
+
   }
   pop();
   push();
 
   fill(0);
   textSize(0.14);
+  textFont(georgiaB);
   text(this.teReo, 0,0+ (height * .0009));
   text(this.english, 0,0+ (height * .0012));
-  
+  textFont(georgia);
   text("height: " + this.sizeMin + " to " + this.sizeMax + " m",0,0+(height*.0015));
+  textFont(georgiaI);
   text(this.species,0,0+ (height * .0018));
   pop();
   };
