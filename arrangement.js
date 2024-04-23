@@ -82,11 +82,32 @@ function draw () {
         let mode;
         // pull a 1-100 percentage
         let speciesChance = percentage();
+        let popSoFar;
         
+        // for (let m = 0; m < allMoa.length; m++){
+        //   popSoFar += allMoa[i].percentage;
+        //   if (speciesChance < popSoFar){
+        //     mode = m + 1;
+        //   } else {
+        //     return;
+        //   }
+        // }
+          
+        // for (let m = 0; m < allMoa.length; m++){
+        //   popSoFar += allMoa [m].percentage;
+        //   if (speciesChance < popSoFar + allMoa[m].percentage){
+        //        mode = m + 1;
+        //   }else {
+        //     popSoFar += allMoa [m].percentage;
+        //   }
+
+        // }
 
         // this feels hacky but I got the code working for species chance!
+        // I basically want to rewrite this as a small block of code that iterates through allMoa, adds percentage chance, sets mode.
         if (speciesChance < moariki.percentage){
           mode = 1;
+
         }else if (speciesChance < moariki.percentage + moaHakahaka.percentage){
           mode = 2;
         }else if (speciesChance < moariki.percentage + moaHakahaka.percentage + moaNunui.percentage){

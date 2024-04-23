@@ -192,7 +192,7 @@ switch (mode){
     moaRuarangi.show(0,0);
     break;
   default: 
-    console.log("for some reason, the randomness generator for species selection returned a really weird value");
+    console.log("for some reason, the randomness generator for species selection returned a really weird value: " + mode);
     // this debug message was a very good call. The amount of times I've been spammed with it in the console output..
 }
 
