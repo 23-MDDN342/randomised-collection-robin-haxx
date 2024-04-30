@@ -1,10 +1,16 @@
+**PROJECT 2: PROCEDURAL EXTINCT NATIVE AVIAN SPECIES NATURAL VARIATION DIGITAL ILLUSTRATION !!**
+
+I'm approaching this project as a programming + data visualization exercise first, rather than a design assignment, so my focus was on finding clear and simple methods of visualizing the systems I was building.
+This project is an object- oriented tool for creating "collections" of Moa, distributed according to how rare the best natural historians reckon they were, and illustrating their relative sizes and the habitat they preferred.
+I was inspired by George Hudson's work as an entomologist, as he documented his samples of NZ insect species with beautiful illustrations and pushed for naturalism to be more accessible to people without formal scientific education.
+ ![George Hudson](readme_assets\hudson.png)
+
+It later became inspired by the sources I used in researching the Moa
 
  ![Lost World of the moa](readme_assets\lostworld.png)
- 
 
-
-
-
+My best source of information so far has been this book. Incredibly helpful, well written for how scientific it is and pretty up to date.
+Worthy, T. H., and Richard N. Holdaway. The Lost World of the Moa : Prehistoric Life of New Zealand. Indiana University Press, 2002.
 
 For the "size" trait I used their estimated heights - note that this may not translate to head size in the same way for all species.
 Most of the information I was referring to after my initial research is the overviews on New Zealand Birds Online.
@@ -20,7 +26,8 @@ Kuranui:      https://nzbirdsonline.org.nz/species/north-island-giant-moa
 Moa Ruarangi: https://nzbirdsonline.org.nz/species/mantells-moa
 
 
-
+A blog post where I talk about the project + Moa natural history in more detail:
+https://ruleofbirds.blog/post/747994168372101120/%F0%9D%9A%8D%F0%9D%9A%8E%F0%9D%9A%9F%F0%9D%9A%95%F0%9D%9A%98%F0%9D%9A%90%F0%9D%9F%B6%F0%9D%9F%B8%F0%9D%9F%B7
 
 
 
