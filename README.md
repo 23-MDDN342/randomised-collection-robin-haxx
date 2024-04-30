@@ -3,7 +3,7 @@
 I'm approaching this project as a programming + data visualization exercise first, rather than a design assignment, so my focus was on finding clear and simple methods of visualizing the systems I was building.
 This project is an object- oriented tool for creating "collections" of Moa, distributed according to how rare the best natural historians reckon they were, and illustrating their relative sizes and the habitat they preferred.
 I was inspired by George Hudson's work as an entomologist, as he documented his samples of NZ insect species with beautiful illustrations and pushed for naturalism to be more accessible to people without formal scientific education.
- ![George Hudson](readme_assets\hudson.png)
+ ![George Hudson](readme_assets\hudson.jpg)
 
 It later became inspired by the sources I used in researching the Moa
 
