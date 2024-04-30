@@ -1,3 +1,30 @@
+
+ ![Lost World of the moa](readme_assets\lostworld.png)
+ 
+
+
+
+
+
+For the "size" trait I used their estimated heights - note that this may not translate to head size in the same way for all species.
+Most of the information I was referring to after my initial research is the overviews on New Zealand Birds Online.
+
+Moariki:      https://nzbirdsonline.org.nz/species/little-bush-moa
+Moa Hakahaka: https://nzbirdsonline.org.nz/species/stout-legged-moa
+Moa Nunui:    https://nzbirdsonline.org.nz/species/south-island-giant-moa
+Moa Waewae Taumaha: https://nzbirdsonline.org.nz/species/heavy-footed-moa
+Moa Momona:         https://nzbirdsonline.org.nz/species/eastern-moa
+Moa Koukou:         https://nzbirdsonline.org.nz/species/crested-moa
+Moa Pukepuke: https://nzbirdsonline.org.nz/species/upland-moa
+Kuranui:      https://nzbirdsonline.org.nz/species/north-island-giant-moa
+Moa Ruarangi: https://nzbirdsonline.org.nz/species/mantells-moa
+
+
+
+
+
+
+
 latest updates: 
 
 Population distribution is working! 

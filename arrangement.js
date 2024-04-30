@@ -115,7 +115,7 @@ function draw () {
   const islandsCount = islandsEng.length;
   const habitatCount = habitatEng.length;
 
-  image(title,width- (w*2) + (lineSpace * 3),lineSpace * 16, height * .6, height *.4);
+  image(title, width- (w*2) + (lineSpace * 3), lineSpace * 16, height * .6, height *.4);
 
   // code for drawing the key
   push();
