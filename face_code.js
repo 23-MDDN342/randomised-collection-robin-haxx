@@ -114,27 +114,45 @@ class Moa {
     // eyes
     ellipse(x-(size*.2),y-(size*.15),size* (i*.005), size * (i*.004));
     ellipse(x+(size*.2),y-(size*.15),size* (i*.005), size * (i*.004));
+    push();
+    strokeWeight(size*.015);
+    fill(combinedCol);
+    ellipse(x-(size*.205),y-(size*.15),size* (i*.02)*.19, size * (i*.018)*.2);
+    ellipse(x+(size*.205),y-(size*.15),size* (i*.02)*.19, size * (i*.018)*.2);
+    pop();
 
 
 
   }
 
+
+  if (this.bill == "short pointed" || this.bill == "robust pointed"){
+    for (let b = -5; b < 5; b++){
+    stroke(islandCol);
+    strokeWeight(size * 0.004);
+     line(b*.01,0-(size*.16),0,size*.01);
+    }
+  }
+
+  //EDGE CASE: RARE "CRESTED" MOA !
+
   if (this.plumage == "crested"){
-    stroke(0);
+    stroke(habitatCol);
 
     for (let j = 0; j < 10; j++){
 
       push();
       rotate(190);
       translate(-size*.57,size*.2);
-      arc(x,y,size, size * (j*.08), 0, TWO_PI);
+      //arc(x,y,size, size * (j*.08), 0, TWO_PI);
       pop();
 
       push();
-      rotate(320);
-      translate(-size*.57,size*.3);
-      arc(x,y,size*.2, size * (j*.06), 100, 130);
-      arc(x,y-(size*.2),size*.2, size * (j*.06), 280, 310);
+      rotate(90);
+      translate(-size*.27,size*.09);
+      arc(x,y+(size*.05),size*.2, size * (j*.06), 50, 80);
+      rotate(0);
+      arc(x,y-(size*.23),size*.2, size * (j*.06), 280, 310);
       pop();
     }
     
@@ -176,7 +194,7 @@ moaHakahaka       = new Moa(  "Moa Hakahaka",       "Stout- Legged Moa",      "S
 moaNunui          = new Moa(  "Moa Nunui",          "South Island Giant Moa", "S",    "S+W+D",  2.40, 3.60,   "robust rounded",   "streaky",  "Dinornis robustus"         , 800 );
 moaWaewaeTaumaha  = new Moa(  "Moa Waewae Taumaha", "Heavy- Footed Moa",      "S",    "D",      1.00, 1.20,   "short curved",     "shaggy",   "Pachyornis elephantopus"   , 210 );
 moaMomona         = new Moa(  "Moa Mōmona",         "Eastern Moa",            "S",    "D",      0.70, 1.00,   "robust curved",    "shaggy",   "Emeus crassus"             , 270 );
-moaKoukou         = new Moa(  "Moa Koukou",         "Crested Moa",            "S",    "S",      1.20, 1.50,   "robust pointed",   "crested",  "Pachyornis australis"      , 10000  );
+moaKoukou         = new Moa(  "Moa Koukou",         "Crested Moa",            "S",    "S",      1.20, 1.50,   "robust pointed",   "crested",  "Pachyornis australis"      , 110  );
 moaPukepuke       = new Moa(  "Moa Pukepuke",       "Upland Moa",             "S",    "S",      0.65, 0.95,   "short curved",     "mottled",  "Megalopteryx didinus"      , 100 );
 kuranui           = new Moa(  "Kuranui",            "North Island Giant Moa", "N",    "W",      2.40, 3.00,   "robust curved",    "shaggy",   "Dinornis novazealandiae"   , 310 );
 moaRuarangi       = new Moa(  "Moa Ruarangi",       "Mantell's Moa",          "N",    "D",      0.55, 1.30,   "short pointed",    "shaggy",   "Pachyornis geranoides"     , 14  );
