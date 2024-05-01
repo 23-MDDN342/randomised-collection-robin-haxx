@@ -8,6 +8,9 @@ let wetForestCol =   [28, 109, 156];
 let supalpineCol =   [178, 46, 255];
 let allHabitatsCol = [250, 96, 252];
 
+let bgCol = [255,255,255];
+
+
 // declaring variables that will be defined as instances of the Moa class
 let moariki,
 moaHakahaka,
@@ -18,8 +21,6 @@ moaKoukou,
 moaPukepuke,
 kuranui,
 moaRuarangi;
-
-
 
 class Moa {
   constructor (_teReo, _english, _island, _habitat, _sizeMin, _sizeMax, _bill, _plumage, _species, _population){
@@ -39,6 +40,8 @@ class Moa {
   show(x,y){
     let islandCol;
     let habitatCol;
+    
+
 
   //  base colour depends on island
   if (this.island == "N"){
@@ -48,12 +51,12 @@ class Moa {
   } else if (this.island == "S+N"){
       islandCol = bothIslandsCol;
   } else {
-      islandCol = [255,255,255];
+      islandCol = bgCol;
       console.log("unexpected island value for Moa class!");
   }
 
-  //  secondary colour depends on habitat
 
+  //  secondary colour depends on habitat
   //  feature change based on habitat
 
   if (this.habitat == "D"){
@@ -65,19 +68,30 @@ class Moa {
   } else if (this.habitat == "S+W+D"){
       habitatCol = allHabitatsCol;
   } else {
+    habitatCol = bgCol;
     console.log("unexpected habitat value for Moa class!");
   }
+
+
+    //color() and lerpColor() seem to break the code so I wrote this 
+    let averageRed =    (islandCol[0] + habitatCol[0]) / 2;
+    let averageGreen =  (islandCol[1] + habitatCol[1]) / 2;
+    let averageBlue =   (islandCol[2] + habitatCol[2]) / 2;
+    let combinedCol = [averageRed, averageGreen, averageBlue]; // island colour "tinted" with habitat colour
+
+
   //  noise mapped between sizemin and sizemax
   let size = random(this.sizeMin, this.sizeMax);
+
   push();
   noFill();
   stroke(0);
   
-  for(let i = 0; i < 20; i++){
+  for(let i = 0; i < 21; i++){
     strokeWeight(size*.009);
     //ellipse(x+(size*.001),y+(size*.001),size * (i*.03),size * (i*.015));
-    //let combinedCol = lerpColor(islandCol,habitatCol,0.2);
-    stroke(habitatCol);
+
+    stroke(combinedCol);
     //ellipse(x,y,size * (i*.025),size * (i*.03));
     ellipse(x,y-(size*.08),size * (i*.028),size * (i*.017));
     strokeWeight(size*.01);
@@ -91,25 +105,56 @@ class Moa {
     push();
     strokeWeight(size*.001);
     ellipse(x,y-(size*.19),size * (i*.010),size * (i*.015));//beak top
-    stroke(habitatCol);
+    stroke(combinedCol);
     scale(1 + (i*.05));
     
-    ellipse(0,y-(size*.15),size* (i*.02), size * (i*.0003));
+    //ellipse(0,y-(size*.15),size* (i*.02), size * (i*.0003));
     pop();
     
+    // eyes
     ellipse(x-(size*.2),y-(size*.15),size* (i*.005), size * (i*.004));
     ellipse(x+(size*.2),y-(size*.15),size* (i*.005), size * (i*.004));
-
-    if (this.plumage == "crested"){
-      stroke(habitatCol);
-      //rect(0,0,size* (i*.01), size * (i*.01));
-      //ellipse(0,y-(size*.25),size* (i*.005), size * (i*.004));
-
-    }
 
 
 
   }
+
+  if (this.plumage == "crested"){
+    stroke(0);
+
+    for (let j = 0; j < 10; j++){
+
+      push();
+      rotate(190);
+      translate(-size*.57,size*.2);
+      arc(x,y,size, size * (j*.08), 0, TWO_PI);
+      pop();
+
+      push();
+      rotate(320);
+      translate(-size*.57,size*.3);
+      arc(x,y,size*.2, size * (j*.06), 100, 130);
+      arc(x,y-(size*.2),size*.2, size * (j*.06), 280, 310);
+      pop();
+    }
+    
+    
+
+    //rect(0,0,size* (i*.01), size * (i*.01));
+    //ellipse(0,y-(size*.25),size* (i*.012), size * (i*.008));
+   
+    // stroke(bgCol);
+    
+    
+    // push();
+    // strokeWeight(size * .01);
+    // stroke(0);
+
+    // arc(x,y-(size*.2),size*i*.05, size*i*.005, 0, TWO_PI );
+    // //ellipse(x+(size*.2),y-(size*.15),size* (i*.005), size * (i*.004));
+    // pop();
+  }
+
   pop();
   push();
 
@@ -131,7 +176,7 @@ moaHakahaka       = new Moa(  "Moa Hakahaka",       "Stout- Legged Moa",      "S
 moaNunui          = new Moa(  "Moa Nunui",          "South Island Giant Moa", "S",    "S+W+D",  2.40, 3.60,   "robust rounded",   "streaky",  "Dinornis robustus"         , 800 );
 moaWaewaeTaumaha  = new Moa(  "Moa Waewae Taumaha", "Heavy- Footed Moa",      "S",    "D",      1.00, 1.20,   "short curved",     "shaggy",   "Pachyornis elephantopus"   , 210 );
 moaMomona         = new Moa(  "Moa Mōmona",         "Eastern Moa",            "S",    "D",      0.70, 1.00,   "robust curved",    "shaggy",   "Emeus crassus"             , 270 );
-moaKoukou         = new Moa(  "Moa Koukou",         "Crested Moa",            "S",    "S",      1.20, 1.50,   "robust pointed",   "crested",  "Pachyornis australis"      , 30  );
+moaKoukou         = new Moa(  "Moa Koukou",         "Crested Moa",            "S",    "S",      1.20, 1.50,   "robust pointed",   "crested",  "Pachyornis australis"      , 10000  );
 moaPukepuke       = new Moa(  "Moa Pukepuke",       "Upland Moa",             "S",    "S",      0.65, 0.95,   "short curved",     "mottled",  "Megalopteryx didinus"      , 100 );
 kuranui           = new Moa(  "Kuranui",            "North Island Giant Moa", "N",    "W",      2.40, 3.00,   "robust curved",    "shaggy",   "Dinornis novazealandiae"   , 310 );
 moaRuarangi       = new Moa(  "Moa Ruarangi",       "Mantell's Moa",          "N",    "D",      0.55, 1.30,   "short pointed",    "shaggy",   "Pachyornis geranoides"     , 14  );

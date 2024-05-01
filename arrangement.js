@@ -74,7 +74,7 @@ function draw () {
   randomSeed(curRandomSeed);
 
   // clear screen
-  background(255);
+  background(bgCol);
   noStroke();
 
   // draw a 6x3 grid of faces
