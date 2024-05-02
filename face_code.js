@@ -72,7 +72,6 @@ class Moa {
     console.log("unexpected habitat value for Moa class!");
   }
 
-
     //color() and lerpColor() seem to break the code so I wrote this 
     let averageRed =    (islandCol[0] + habitatCol[0]) / 2;
     let averageGreen =  (islandCol[1] + habitatCol[1]) / 2;
@@ -121,18 +120,26 @@ class Moa {
     ellipse(x+(size*.205),y-(size*.15),size* (i*.02)*.19, size * (i*.018)*.2);
     pop();
 
-
-
   }
 
 
+  //BILLS
   if (this.bill == "short pointed" || this.bill == "robust pointed"){
-    for (let b = -5; b < 5; b++){
     stroke(islandCol);
     strokeWeight(size * 0.004);
+    for (let b = -8; b < 8; b++){
      line(b*.01,0-(size*.16),0,size*.01);
     }
-  }
+  }else if (this.bill == "short curved" || this.bill == "robust curved"){
+    stroke(islandCol);
+    strokeWeight(size * 0.004);
+    for (let b = -8; b < 810; b++){
+     //line(b*.01,0-(size*.08),0,size*.01);
+     circle(x,y-(size*.12 ),size*(b*.03));
+    }
+  }else if (this.bill == "short rounded" || this.bill == "robust rounded"){
+
+  }else {console.log("Bill property unaccounted for: " + this.bill);}
 
   //EDGE CASE: RARE "CRESTED" MOA !
 
@@ -194,7 +201,7 @@ moaHakahaka       = new Moa(  "Moa Hakahaka",       "Stout- Legged Moa",      "S
 moaNunui          = new Moa(  "Moa Nunui",          "South Island Giant Moa", "S",    "S+W+D",  2.40, 3.60,   "robust rounded",   "streaky",  "Dinornis robustus"         , 800 );
 moaWaewaeTaumaha  = new Moa(  "Moa Waewae Taumaha", "Heavy- Footed Moa",      "S",    "D",      1.00, 1.20,   "short curved",     "shaggy",   "Pachyornis elephantopus"   , 210 );
 moaMomona         = new Moa(  "Moa Mōmona",         "Eastern Moa",            "S",    "D",      0.70, 1.00,   "robust curved",    "shaggy",   "Emeus crassus"             , 270 );
-moaKoukou         = new Moa(  "Moa Koukou",         "Crested Moa",            "S",    "S",      1.20, 1.50,   "robust pointed",   "crested",  "Pachyornis australis"      , 110  );
+moaKoukou         = new Moa(  "Moa Koukou",         "Crested Moa",            "S",    "S",      1.20, 1.50,   "robust pointed",   "crested",  "Pachyornis australis"      , 10  );
 moaPukepuke       = new Moa(  "Moa Pukepuke",       "Upland Moa",             "S",    "S",      0.65, 0.95,   "short curved",     "mottled",  "Megalopteryx didinus"      , 100 );
 kuranui           = new Moa(  "Kuranui",            "North Island Giant Moa", "N",    "W",      2.40, 3.00,   "robust curved",    "shaggy",   "Dinornis novazealandiae"   , 310 );
 moaRuarangi       = new Moa(  "Moa Ruarangi",       "Mantell's Moa",          "N",    "D",      0.55, 1.30,   "short pointed",    "shaggy",   "Pachyornis geranoides"     , 14  );
@@ -235,41 +242,32 @@ function percentage(){
 function modeSelect(mode){
 
 switch (mode){
-  case 1:
-  case '1': // I really really hate JavaScript for this sometimes. 
+  case 1: case '1': // I really really hate JavaScript for this sometimes. 
             // the editor slider is converting these int values to single-character strings
     moariki.show(0,0);
     break;
-  case 2:
-  case '2':
+  case 2: case '2':
     moaHakahaka.show(0,0);
     break;
-  case 3:
-  case '3':
+  case 3: case '3':
     moaNunui.show(0,0);
     break;
-  case 4:
-  case '4':
+  case 4: case '4':
     moaWaewaeTaumaha.show(0,0);
     break;
-  case 5:
-  case '5':
+  case 5: case '5':
     moaMomona.show(0,0);
     break;
-  case 6:
-  case '6':
+  case 6: case '6':
     moaKoukou.show(0,0);
     break;
-  case 7:
-  case '7':
+  case 7: case '7':
     moaPukepuke.show(0,0);
     break;
-  case 8:
-  case '8':
+  case 8: case '8':
     kuranui.show(0,0);
     break;
-  case 9:
-  case '9':
+  case 9: case '9':
     moaRuarangi.show(0,0);
     break;
   default: 
