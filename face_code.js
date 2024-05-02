@@ -122,6 +122,13 @@ class Moa {
 
   }
 
+  stroke(combinedCol);
+  strokeWeight(size * 0.002);
+  for (let b = -8; b < 1000; b+=3){
+   //line(b*.01,0-(size*.08),0,size*.01);
+   circle(x,y-(size*.12 ),size*(b*.03));
+  }
+
 
   //BILLS
   if (this.bill == "short pointed" || this.bill == "robust pointed"){
@@ -131,12 +138,7 @@ class Moa {
      line(b*.01,0-(size*.16),0,size*.01);
     }
   }else if (this.bill == "short curved" || this.bill == "robust curved"){
-    stroke(islandCol);
-    strokeWeight(size * 0.004);
-    for (let b = -8; b < 810; b++){
-     //line(b*.01,0-(size*.08),0,size*.01);
-     circle(x,y-(size*.12 ),size*(b*.03));
-    }
+
   }else if (this.bill == "short rounded" || this.bill == "robust rounded"){
 
   }else {console.log("Bill property unaccounted for: " + this.bill);}
