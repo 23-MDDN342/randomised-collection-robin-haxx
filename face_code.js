@@ -10,6 +10,22 @@ let allHabitatsCol = [250, 96, 252];
 
 let bgCol = [255,255,255];
 
+let title;
+let georgia,
+    georgiaB,
+    georgiaI,
+    georgiaZ;
+
+    function preload(){
+      // TEXT TITLE BLOCK (font: adine kirnberg alternative)
+      title =     loadImage('title.png');
+      // FONTS
+      georgia =   loadFont('fonts/georgia.ttf');
+      georgiaB =  loadFont('fonts/georgiab.ttf');
+      georgiaI =  loadFont('fonts/georgiai.ttf');
+      georgiaZ =  loadFont('fonts/georgiaz.ttf');
+    
+    }
 
 // declaring variables that will be defined as instances of the Moa class
 let moariki,
@@ -98,8 +114,12 @@ class Moa {
     ellipse(x,y-(size*.08),size * (i*.026),size * (i*.016));
     stroke(255);
     strokeWeight(size*.006);
-    ellipse(x,y+(size*.22),size * (i*.041),size * (i*.035));
-    ellipse(x,y+(size*.29),size * (i*.041),size * (i*.045));//beak btm
+    let beakMod = 1;
+    if (this.bill == "short rounded" || this.bill == "short pointed" || this.bill == "short curved"){
+      beakMod = 0.8;
+    }
+    ellipse(x,y+(size*.22),size * (i*.041)* beakMod,size * (i*.035));
+    ellipse(x,y+(size*.29),size * (i*.041)* beakMod,size * (i*.045));//beak btm
     
     push();
     strokeWeight(size*.001);
@@ -244,8 +264,7 @@ function percentage(){
 function modeSelect(mode){
 
 switch (mode){
-  case 1: case '1': // I really really hate JavaScript for this sometimes. 
-            // the editor slider is converting these int values to single-character strings
+  case 1: case '1':  // the editor slider is converting these int values to single-character strings
     moariki.show(0,0);
     break;
   case 2: case '2':
