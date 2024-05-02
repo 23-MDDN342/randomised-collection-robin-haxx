@@ -121,6 +121,7 @@ function draw () {
   push();
     textAlign(LEFT);
     stroke(keyBorderCol);
+    fill(255,100);
     translate(width - (w*2), h * 1.67);  //  overall placement of key
     translate(lineSpace,lineSpace);     //  padding
     rect(0,0, (w*2) - (lineSpace*2), (h*1.3) - (lineSpace * 2));
@@ -136,6 +137,7 @@ function draw () {
       for(let i = 0; i <= islandsCount; i++){
         if(i == 0){
           textFont(georgiaB);
+          fill(0);
           text("ISLAND",lineSpace*10,lineSpace*4);
         }else{
           textFont(georgia);
@@ -154,6 +156,7 @@ function draw () {
       for(let i = 0; i <= habitatCount; i++){
         if (i == 0){
           textFont(georgiaB);
+          fill(0);
           text("HABITAT", lineSpace * 10, lineSpace * 4);
         } else {
           textFont(georgia);

@@ -95,7 +95,16 @@ class Moa {
     ellipse(x,y-(size*.08),size * (i*.028),size * (i*.017));
     strokeWeight(size*.01);
     stroke(islandCol);
+
     ellipse(x,y-(size*.08),size * (i*.026),size * (i*.016));
+    if(this.plumage == "streaky"){ // this isn't super well resolved but I wanted some plumage-based variation!
+      push();
+      stroke(bgCol);
+      strokeWeight(size*.001);
+      ellipse(x,y-(size*.1),size * (i*.026),size * (i*.03));
+      pop();
+    }
+    
     stroke(255);
     strokeWeight(size*.006);
     ellipse(x,y+(size*.22),size * (i*.041),size * (i*.035));
@@ -115,21 +124,24 @@ class Moa {
     ellipse(x+(size*.2),y-(size*.15),size* (i*.005), size * (i*.004));
     push();
     strokeWeight(size*.015);
-    fill(combinedCol);
+    fill(habitatCol);
     ellipse(x-(size*.205),y-(size*.15),size* (i*.02)*.19, size * (i*.018)*.2);
     ellipse(x+(size*.205),y-(size*.15),size* (i*.02)*.19, size * (i*.018)*.2);
     pop();
 
   }
 
+  // visual overdraw: this makes a background style I think looks rly dope!
   stroke(combinedCol);
-  strokeWeight(size * 0.002);
-  for (let b = -8; b < 1000; b+=3){
+  strokeWeight(size * 0.0005);
+  for (let b = 0; b < 1000; b+=6){
    //line(b*.01,0-(size*.08),0,size*.01);
+   if (b % 24 != 0){
    circle(x,y-(size*.12 ),size*(b*.03));
   }
+  }
 
-
+  
   //BILLS
   if (this.bill == "short pointed" || this.bill == "robust pointed"){
     stroke(islandCol);
@@ -137,8 +149,15 @@ class Moa {
     for (let b = -8; b < 8; b++){
      line(b*.01,0-(size*.16),0,size*.01);
     }
-  }else if (this.bill == "short curved" || this.bill == "robust curved"){
-
+  }else if (this.bill == "short curved" || this.bill == "robust curved"){ 
+    //For blocking a shape for curved beaks, I used a pattern that also looks like a moko pattern (te takarangi). 
+    // This was not thoroughly considered by any means! Though I couldn't find any glaring problems with associating moa with what essentially represents genealogical time, the spirit and the cosmos.
+    stroke(islandCol);
+    strokeWeight(size * 0.002);
+    for (let b = -8; b < 8; b++){
+     ellipse(x+(size*.12),y-(size*.02),size*(b*.02),size*(b*.02));
+     ellipse(x-(size*.12),y-(size*.02),size*(b*.022),size*(b*.022));
+    }
   }else if (this.bill == "short rounded" || this.bill == "robust rounded"){
 
   }else {console.log("Bill property unaccounted for: " + this.bill);}
@@ -165,21 +184,6 @@ class Moa {
       pop();
     }
     
-    
-
-    //rect(0,0,size* (i*.01), size * (i*.01));
-    //ellipse(0,y-(size*.25),size* (i*.012), size * (i*.008));
-   
-    // stroke(bgCol);
-    
-    
-    // push();
-    // strokeWeight(size * .01);
-    // stroke(0);
-
-    // arc(x,y-(size*.2),size*i*.05, size*i*.005, 0, TWO_PI );
-    // //ellipse(x+(size*.2),y-(size*.15),size* (i*.005), size * (i*.004));
-    // pop();
   }
 
   pop();
