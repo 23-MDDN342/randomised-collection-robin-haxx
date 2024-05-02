@@ -29,23 +29,8 @@ Moa Ruarangi: https://nzbirdsonline.org.nz/species/mantells-moa <br>
 A blog post where I talk about the project + Moa natural history in more detail:
 https://ruleofbirds.blog/post/747994168372101120/%F0%9D%9A%8D%F0%9D%9A%8E%F0%9D%9A%9F%F0%9D%9A%95%F0%9D%9A%98%F0%9D%9A%90%F0%9D%9F%B6%F0%9D%9F%B8%F0%9D%9F%B7
 
-The population counts aren't based off of particularly accurate data.
+The population counts aren't based off of particularly accurate data, and I wouldn't say that this commit is ready to be used as an educational resource.
 
-
-latest updates: 
-
-Population distribution is working! 
-I Identified a problem: My logic works under the assumption that generation is random each time, feeding in a random value which I can manipulate.
-This doesn't seem to entirely be the case; when the page is loaded, one or two moa on each arrangement will be "set" in place, so regenerating via clicking will only change their size (and whatever other within-species variation I code in.)
-I'm not entirely sure how this is happening, but the random seed funtions seem to result in weirdly predictable patterns.
-
-I implemented the system for habitat- based colour during a coworking session with the Protostars cohort 
-(Also tried my best at doing an explainer video of the code so far https://www.youtube.com/watch?v=Reh5eLW4csU)
-
-Since then, I've hooked up a simple way to use both variables at once, drawing a colourful "outline" for biome and keeping the Island- dependent base colour. Keeping these two colour sets distinct is the important part, so a more realistic secondary colour may not be the best idea.
-
-initial moa code prototype (does not display anything)
-https://editor.p5js.org/verteks/sketches/6kIKr8cT1t
 
 
 
