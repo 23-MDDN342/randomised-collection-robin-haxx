@@ -16,29 +16,6 @@ function setup () {
   let main_canvas = createCanvas(canvasWidth, canvasHeight);
   main_canvas.parent('canvasContainer');
 
-  // create sliders
-  slider1 = createSlider(0, 100, 50);
-  slider2 = createSlider(0, 100, 50);
-  slider3 = createSlider(0, 100, 50);
-  slider4 = createSlider(0, 100, 50);
-  slider5 = createSlider(0, 100, 50);
-  slider6 = createSlider(0, 100, 50);
-  slider7 = createSlider(0, 100, 50);
-  slider8 = createSlider(0, 100, 50);
-  slider9 = createSlider(0, 100, 50);
-  slider10 = createSlider(0, 100, 50);
-
-  slider1.parent('slider1Container');
-  slider2.parent('slider2Container');
-  slider3.parent('slider3Container');
-  slider4.parent('slider4Container');
-  slider5.parent('slider5Container');
-  slider6.parent('slider6Container');
-  slider7.parent('slider7Container');
-  slider8.parent('slider8Container');
-  slider9.parent('slider9Container');
-  slider10.parent('slider10Container');
-
   faceGuideCheckbox = createCheckbox('', false);
   faceGuideCheckbox.parent('checkbox1Container');
 
@@ -63,21 +40,10 @@ function setup () {
 function draw () {
   strokeWeight(0.2);
 
-  let mode = faceSelector.value(); // please dont tell me javascript is converting this int to a string
+  let mode = faceSelector.value(); // this is where javascript converts the "mode" int to a string for some reason?
   console.log(faceSelector.value());
 
   background(255);
-
-  let s1 = slider1.value();
-  let s2 = slider2.value();
-  let s3 = slider3.value();
-  let s4 = slider4.value();
-  let s5 = slider5.value();
-  let s6 = slider6.value();
-  let s7 = slider7.value();
-  let s8 = slider8.value();
-  let s9 = slider9.value();
-  let s10 = slider10.value();
 
   let show_face_guide = faceGuideCheckbox.checked();
 
