@@ -10,23 +10,24 @@ let allHabitatsCol = [250, 96, 252];
 
 let bgCol = [255,255,255];
 
+
+
 let title;
 let georgia,
     georgiaB,
     georgiaI,
     georgiaZ;
 
-function preload(){
-  // TEXT TITLE BLOCK (font: adine kirnberg alternative)
-  title =     loadImage('title.png');
-  // FONTS
-  georgia =   loadFont('fonts/georgia.ttf');
-  georgiaB =  loadFont('fonts/georgiab.ttf');
-  georgiaI =  loadFont('fonts/georgiai.ttf');
-  georgiaZ =  loadFont('fonts/georgiaz.ttf');
-
-}
-
+    function preload(){
+      // TEXT TITLE BLOCK (font: adine kirnberg alternative)
+      title =     loadImage('title.png');
+      // FONTS
+      georgia =   loadFont('fonts/georgia.ttf');
+      georgiaB =  loadFont('fonts/georgiab.ttf');
+      georgiaI =  loadFont('fonts/georgiai.ttf');
+      georgiaZ =  loadFont('fonts/georgiaz.ttf');
+    
+    }
 
 // declaring variables that will be defined as instances of the Moa class
 let moariki,
@@ -121,7 +122,7 @@ class Moa {
       ellipse(x,y-(size*.1),size * (i*.026),size * (i*.03));
       pop();
     }
-    
+
     stroke(255);
     strokeWeight(size*.006);
 
@@ -157,8 +158,8 @@ class Moa {
   // visual overdraw: this makes a background style I think looks rly dope! 
   // It's not exactly the most visually safe code ever, but I thought it gave the visuals a cool final dimension.
   stroke(combinedCol);
-  strokeWeight(size * 0.0005);
-  for (let b = 0; b < 600; b+=6){
+  strokeWeight(size * 0.002);
+  for (let b = -8; b < 1000; b+=3){
    //line(b*.01,0-(size*.08),0,size*.01);
    if (b % 24 != 0){
    circle(x,y-(size*.12 ),size*(b*.03));
@@ -272,8 +273,7 @@ function percentage(){
 function modeSelect(mode){
 
 switch (mode){
-  case 1: case '1': // I really really hate JavaScript for this sometimes. 
-            // the editor slider is converting these int values to single-character strings
+  case 1: case '1':  // the editor slider is converting these int values to single-character strings
     moariki.show(0,0);
     break;
   case 2: case '2':
