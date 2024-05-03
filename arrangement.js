@@ -32,7 +32,6 @@ function setup () {
   // create the drawing canvas, save the canvas element
   let main_canvas = createCanvas(canvasWidth, canvasHeight);
   main_canvas.parent('canvasContainer');
-
   curRandomSeed = int(random(0, 1000));
 
   // rotation in degrees
