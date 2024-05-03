@@ -158,7 +158,7 @@ class Moa {
   // visual overdraw: this makes a background style I think looks rly dope! 
   // It's not exactly the most visually safe code ever, but I thought it gave the visuals a cool final dimension.
   stroke(combinedCol);
-  strokeWeight(size * 0.0006);
+  strokeWeight(size * 0.0004);
   for (let b = 0; b < 600; b+=6){
    //line(b*.01,0-(size*.08),0,size*.01);
    if (b % 24 != 0){
