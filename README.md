@@ -32,7 +32,7 @@ https://ruleofbirds.blog/post/747994168372101120/%F0%9D%9A%8D%F0%9D%9A%8E%F0%9D%
 The population counts aren't based off of particularly accurate data, and I wouldn't say that this commit is ready to be used as an educational resource.
 However, I figured out how to adapt all the sorts of information I could think of in the different sections of the code.
 
-![process pic 1](readme_assets\dev1.jpg)![process pic 2](readme_assets\dev2.jpg)![process pic 3](readme_assets\dev3.jpg)![process pic 4](readme_assets\dev4.jpg)![process pic 51](readme_assets\dev5.jpg)![process pic 6](readme_assets\dev6.jpg)
+<!-- ![process pic 1](readme_assets\dev1.jpg)![process pic 2](readme_assets\dev2.jpg)![process pic 3](readme_assets\dev3.jpg)![process pic 4](readme_assets\dev4.jpg)![process pic 51](readme_assets\dev5.jpg)![process pic 6](readme_assets\dev6.jpg) -->
 
 
 
