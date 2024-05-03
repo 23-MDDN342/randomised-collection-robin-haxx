@@ -9,7 +9,11 @@ let curRandomSeed = 0;
 let lastSwapTime = 0;
 const millisPerSwap = 20000;
 
-
+let title;
+let georgia,
+    georgiaB,
+    georgiaI,
+    georgiaZ;
 
 const islandsReo = ["Aotearoa", "Te Ika-a-Māui", "Te Waipounamu"];
 const islandsEng = ["All New Zealand", "North Island", "South Island"];
@@ -26,7 +30,16 @@ const habitatArray = [allHabitatsCol, supalpineCol, wetForestCol, dryForestCol];
 // for the key, I favoured using an array to call from than entering specific variable- assigned values.
 // This makes sense to me but the better practise would probably to have this more organised approach be standardized across the codebase.
 
+function preload(){
+  // TEXT TITLE BLOCK (font: adine kirnberg alternative)
+  title =     loadImage('title.png');
+  // FONTS
+  georgia =   loadFont('fonts/georgia.ttf');
+  georgiaB =  loadFont('fonts/georgiab.ttf');
+  georgiaI =  loadFont('fonts/georgiai.ttf');
+  georgiaZ =  loadFont('fonts/georgiaz.ttf');
 
+}
 
 function setup () {
   // create the drawing canvas, save the canvas element
