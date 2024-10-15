@@ -40,8 +40,92 @@ moaPukepuke,
 kuranui,
 moaRuarangi;
 
+let perceptionRadius = 30;
+
+class Boid {
+    constructor (x, y){
+        this.size = 1; // this should take value from moa size
+        this.position = createVector (x,y);
+        this. velocity = p5.Vector.random2D();
+        this.velocity.mult(this.size);
+        this.acceleration = createVector(0*this.size,0*this.size);
+        this.maxSpeed = 1;
+        this.maxForce = 1;
+    }
+
+    edges(){
+        if (this.position.x > canvasWidth){
+            this.position.x = 0;
+        } else if (this.position.x < 0){
+            this.position.x = canvasWidth;
+        } else if (this.position.y > canvasHeight){
+            this.position.y = 0;
+        } else if (this.position.y < 0){
+            this.position.y = canvasHeight;
+        }
+    }
+
+    display(){
+        noStroke();
+        fill(0);
+        ellipse(this.position.x, this.position.y, 10 * this.size ) ;
+    }
+
+    alignment(kahui){
+
+        let steering = createVector();
+        let total = 0;
+
+        for (let i = 0; i < kahui.length; i++){
+            let distance = dist(this.position.x, this.position.y, kahui[i].position.x, kahui[i].position.y);
+            if (kahui.i != this && distance < perceptionRadius){
+                steering.add(kahui[i].velocity);
+                total += 1;
+            }
+
+        }
+
+        if (total > 0){
+            steering.div(total);
+            steering.setMag(this.maxSpeed);
+            steering.sub(this.velocity);
+            steering.limit(this.maxForce);
+        }
+
+        this.acceleration = steering;
+
+    }
+    
+    cohesion(kahui){
+
+        let steering = createVector();
+        let total = 0;
+
+        for (let i = 0; i < kahui.length; i++){
+            let distance = dist(this.position.x, this.position.y, kahui[i].position.x, kahui[i].position.y);
+        }
+    }
+
+    cohesion(){
+
+    }
+
+    separation(){
+
+    }
+
+
+    update(){
+        this.edges();
+        this.position.add(this.velocity);
+        this.velocity.add(this.acceleration);
+    }
+}
+
 class Moa {
-  constructor (_teReo, _english, _island, _habitat, _sizeMin, _sizeMax, _bill, _plumage, _species, _population){
+  constructor (x = 0, y = 0, _teReo, _english, _island, _habitat, _sizeMin, _sizeMax, _bill, _plumage, _species, _population,
+               
+  ){
     // It made more sense for me to prefix these temporary variables with an underscore. All they do is pass the "this." properties into the class via the constructor.
     this.teReo      = _teReo;
     this.english    = _english;
@@ -53,6 +137,8 @@ class Moa {
     this.plumage    = _plumage;
     this.species    = _species;
     this.population = _population;
+
+
   }
 
   // perhaps we need multiple "show" functions to represent as an illustration or agent
@@ -249,7 +335,7 @@ class Moa {
 
 
 
-    
+
 
     // each species needs a list of foods it will seek
 
@@ -341,6 +427,132 @@ switch (mode){
 }
 
 }
+
+
+
+
+// Flocking
+// Daniel Shiffman
+// https://thecodingtrain.com/CodingChallenges/124-flocking-boids.html
+// https://youtu.be/mhjuuHl6qHM
+
+// class Boid {
+//     constructor() {
+//       this.position = createVector(random(width), random(height));
+//       this.velocity = p5.Vector.random2D();
+//       this.velocity.setMag(random(0.5, 3));
+//       this.acceleration = createVector();
+//       this.maxForce = 0.1;
+//       this.maxSpeed = 1;
+//     }
+  
+//     edges() {
+//       if (this.position.x > width) {
+//         this.position.x = 0;
+//       } else if (this.position.x < 0) {
+//         this.position.x = width;
+//       }
+//       if (this.position.y > height) {
+//         this.position.y = 0;
+//       } else if (this.position.y < 0) {
+//         this.position.y = height;
+//       }
+//     }
+  
+//     align(boids) {
+//       let perceptionRadius = 30;
+//       let steering = createVector();
+//       let total = 0;
+//       for (let other of boids) {
+//         let d = dist(this.position.x, this.position.y, other.position.x, other.position.y);
+//         if (other != this && d < perceptionRadius) {
+//           steering.add(other.velocity);
+//           total++;
+//         }
+//       }
+//       if (total > 0) {
+//         steering.div(total);
+//         steering.setMag(this.maxSpeed);
+//         steering.sub(this.velocity);
+//         steering.limit(this.maxForce);
+//       }
+//       return steering;
+//     }
+  
+//     separation(boids) {
+//       let perceptionRadius = 60;
+//       let steering = createVector();
+//       let total = 0;
+//       for (let other of boids) {
+//         let d = dist(this.position.x, this.position.y, other.position.x, other.position.y);
+//         if (other != this && d < perceptionRadius) {
+//           let diff = p5.Vector.sub(this.position, other.position);
+//           diff.div(d * d);
+//           steering.add(diff);
+//           total++;
+//         }
+//       }
+//       if (total > 0) {
+//         steering.div(total);
+//         steering.setMag(this.maxSpeed);
+//         steering.sub(this.velocity);
+//         steering.limit(this.maxForce);
+//       }
+//       return steering;
+//     }
+  
+//     cohesion(boids) {
+//       let perceptionRadius = 60;
+//       let steering = createVector();
+//       let total = 0;
+//       for (let other of boids) {
+//         let d = dist(this.position.x, this.position.y, other.position.x, other.position.y);
+//         if (other != this && d < perceptionRadius) {
+//           steering.add(other.position);
+//           total++;
+//         }
+//       }
+//       if (total > 0) {
+//         steering.div(total);
+//         steering.sub(this.position);
+//         steering.setMag(this.maxSpeed);
+//         steering.sub(this.velocity);
+//         steering.limit(this.maxForce);
+//       }
+//       return steering;
+//     }
+  
+//     flock(boids) {
+//       let alignment = this.align(boids);
+//       let cohesion = this.cohesion(boids);
+//       let separation = this.separation(boids);
+  
+//       alignment.mult(alignSlider.value());
+//       cohesion.mult(cohesionSlider.value());
+//       separation.mult(separationSlider.value());
+  
+//       this.acceleration.add(alignment);
+//       this.acceleration.add(cohesion);
+//       this.acceleration.add(separation);
+//     }
+  
+//     update() {
+//       this.position.add(this.velocity);
+//       this.velocity.add(this.acceleration);
+//       this.velocity.limit(this.maxSpeed);
+//       this.acceleration.mult(0);
+//     }
+  
+
+//     show() {
+
+//         strokeWeight(4);
+//         stroke(255,80);
+//         square(this.position.x, this.position.y, 25, 10, 55, 50, 5);
+//         point(this.position.x, this.position.y);
+//     }
+    
+// }
 
 
 
