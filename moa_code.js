@@ -55,6 +55,8 @@ class Moa {
     this.population = _population;
   }
 
+  // perhaps we need multiple "show" functions to represent as an illustration or agent
+  // for now, instantiate means "show agent"
   show(x,y){
     let islandCol;
     let habitatCol;
@@ -225,6 +227,39 @@ class Moa {
   text(this.species,0,0+ (height * .0018));
   pop();
   };
+
+  instantiate(x,y){
+    // if habitat is x, spawn elevation bound to that range
+
+    // place at a random x,y within desired elevation...perhaps decide that outside of this method
+
+    // code for kahui sim for group movement
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    // each species needs a list of foods it will seek
+
+
+
+
+    // threshold for security - food source and lack of predation over time, to initiate mate seeking
+
+    // reproduce function
+  }
 }
 
 moariki           = new Moa(  "Moariki",            "Little Bush Moa",        "S+N",  "W",      0.55, 1.10,   "short rounded",    "shaggy",   "Anomalopteryx didiformis"  , 0 );
@@ -237,11 +272,6 @@ moaPukepuke       = new Moa(  "Moa Pukepuke",       "Upland Moa",             "S
 kuranui           = new Moa(  "Kuranui",            "North Island Giant Moa", "N",    "W",      2.40, 3.00,   "robust curved",    "shaggy",   "Dinornis novazealandiae"   , 0 );
 moaRuarangi       = new Moa(  "Moa Ruarangi",       "Mantell's Moa",          "N",    "D",      0.55, 1.30,   "short pointed",    "shaggy",   "Pachyornis geranoides"     , 0  );
 
-
-// population data for all moa:
-// 400, 120, 800, 210, 270, 10, 100, 310, 14
-// population data for pyramid valley:
-// 0, 11, 38, 10, 41, 0, 0, 0, 0
 let allMoa = [moariki,moaHakahaka,moaNunui, moaWaewaeTaumaha, moaMomona, moaKoukou, moaPukepuke, kuranui, moaRuarangi];
 
 
