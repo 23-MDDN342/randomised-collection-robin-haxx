@@ -17,13 +17,15 @@ const canvasHeight = 600;
 let m;
 
 
-
-
 const flock = [];
 let alignSlider, cohesionSlider, separationSlider, boidButtonPlus, boidButtonMinus;
 let colB = 50;
 let xoff = 0;
 
+let quadtree;
+let boundary;
+let capacity = 3;
+let perceptionRadius = 30;
 
 function setup() {
     colorMode(HSB, 100);
@@ -37,15 +39,14 @@ function setup() {
     boidClear = createButton("Clear Boids");
     
 
+    boundary = new Rect(width/2, height/2, width/2, height/2);
+    quadtree = new QuadTree(boundary, capacity);
 
 
+    for(let i = 0; i < boidCount; i++){ 
+      kahui.push(new Boid(random(canvasWidth), random(canvasHeight))); // reminder to place based on environment
 
-     for(let i = 0; i < boidCount; i++){ 
-     kahui.push(new Boid(random(canvasWidth), random(canvasHeight))); // reminder to place based on environment
-
-    m = new Boid(random(canvasWidth), random(canvasHeight));
-
-
+      m = new Boid(random(canvasWidth), random(canvasHeight));
 
   }
 
@@ -62,40 +63,65 @@ function draw() {
    colB = map(noise(xoff), 0, 1, 90, 100);
   
     background(colH, colS, colB, 20);
+
+    quadtree.clearQuadtree();
+
+
+    
+
     
     for (let i = 0; i < boidCount; i++){
-        kahui[i].alignment(kahui);
-        kahui[i].display();
-        kahui[i].update();
+
+        let p = new Point(kahui[i].position.x, kahui[i].position.y, kahui[i]);
+        quadtree.insert(p);
+        
+        let range = new Circle(kahui[i].position.x, kahui[i].position.y, perceptionRadius);
+        let neighbours = [];
+        quadtree.query(range, neighbours);
+        console.log(neighbours)
+
+        console.log(neighbours);
+
+
+
+        // kahui[i].flock(kahui);
+        // kahui[i].display();
+        // kahui[i].update();
     }
 
-    // boidButtonPlus.mousePressed(() => {
-    //   flock.push(new Boid());
-    // });
+    
+boidButtonPlus.mousePressed(() => {
+  kahui.push(new Boid());
+});
 
-    // boidButtonPlus10.mousePressed(() => {
-    //   for (let i = 0; i < 10; i++){flock.push(new Boid());};
-    // });
+boidButtonPlus10.mousePressed(() => {
+  for (let i = 0; i < 10; i++){kahui.push(new Boid());};
+});
 
-    // boidButtonMinus.mousePressed(() => {
-    //   flock.pop();
-    // });
+boidButtonMinus.mousePressed(() => {
+  kahui.pop();
+});
 
-    // boidClear.mousePressed(() => {
-    //   while (flock.length > 0){
-    //     flock.pop();
-    //   }
-    // }
-    // )
+boidClear.mousePressed(() => {
+  while (kahui.length > 0){
+    kahui.pop();
+    neighbours.pop();
+  }
+}
+)
+    quadtree.display();
 
-    // for(let boid of flock) {
-    //   boid.flock(flock);
-    //   boid.update();
-    //   boid.show();  
-    //   boid.edges();
-    // }
+
+
+    for(let boid of kahui) {
+      boid.flock(kahui);
+      boid.update();
+      boid.display();  
+      boid.edges();
+    }
 
     // xoff+= 0.003;
 }
+
 
 

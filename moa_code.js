@@ -40,7 +40,7 @@ moaPukepuke,
 kuranui,
 moaRuarangi;
 
-let perceptionRadius = 30;
+
 
 class Boid {
     constructor (x, y){
@@ -50,7 +50,7 @@ class Boid {
         this.velocity.mult(this.size);
         this.acceleration = createVector(0*this.size,0*this.size);
         this.maxSpeed = 1;
-        this.maxForce = 1;
+        this.maxForce = .2;
     }
 
     edges(){
@@ -92,7 +92,7 @@ class Boid {
             steering.limit(this.maxForce);
         }
 
-        this.acceleration = steering;
+        return steering;
 
     }
     
@@ -103,15 +103,54 @@ class Boid {
 
         for (let i = 0; i < kahui.length; i++){
             let distance = dist(this.position.x, this.position.y, kahui[i].position.x, kahui[i].position.y);
+            if (kahui[i] != this && distance < perceptionRadius){
+              steering.add(kahui[i].position);
+              total += 1;
+            }
         }
+        if (total > 0){
+          steering.div(total);
+          steering.sub(this.position);
+          steering.setMag(this.maxSpeed);
+          steering.sub(this.velocity);
+          steering.limit(this.maxForce);
+        }
+        return steering;
     }
 
-    cohesion(){
 
+    separation(kahui){
+
+      let steering = createVector();
+      let total = 0;
+      for (let i = 0; i < kahui.length; i++){
+        let distance = dist (this.position.x, this.position.y, kahui[i].position.x, kahui[i].position.y);
+        if (kahui[i] != this && distance < perceptionRadius){
+          let neighbourVector = p5.Vector.sub(this.position, kahui[i].position);
+          neighbourVector.div(distance * distance);
+          steering.add(neighbourVector);
+          total++;
+        }
+      
+      }
+
+      if (total > 0){
+        steering.div(total);
+        steering.setMag(this.maxSpeed);
+        steering.sub(this.velocity);
+        steering.limit(this.maxForce);
+      }
+      return steering;
     }
 
-    separation(){
-
+    flock(kahui){
+      let alignment = this.alignment(kahui);
+      let cohesion = this.cohesion(kahui);
+      let separation = this.separation(kahui);
+      
+      this.acceleration.add(alignment);
+      this.acceleration.add(cohesion);
+      this.acceleration.add(separation);
     }
 
 
@@ -119,6 +158,13 @@ class Boid {
         this.edges();
         this.position.add(this.velocity);
         this.velocity.add(this.acceleration);
+        this.acceleration.mult(0);
+    }
+
+    display() {
+      noStroke();
+      fill(0);
+      ellipse(this.position.x, this.position.y, 2, 2);
     }
 }
 
