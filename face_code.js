@@ -238,6 +238,7 @@ kuranui           = new Moa(  "Kuranui",            "North Island Giant Moa", "N
 moaRuarangi       = new Moa(  "Moa Ruarangi",       "Mantell's Moa",          "N",    "D",      0.55, 1.30,   "short pointed",    "shaggy",   "Pachyornis geranoides"     , 14  );
 
 
+
 // population data for all moa:
 // 400, 120, 800, 210, 270, 10, 100, 310, 14
 // population data for pyramid valley:
@@ -277,38 +278,8 @@ function percentage(){
 
 function modeSelect(mode){
 
-switch (mode){
-  case 1: case '1':  // the editor slider is converting these int values to single-character strings
-    moariki.show(0,0);
-    break;
-  case 2: case '2':
-    moaHakahaka.show(0,0);
-    break;
-  case 3: case '3':
-    moaNunui.show(0,0);
-    break;
-  case 4: case '4':
-    moaWaewaeTaumaha.show(0,0);
-    break;
-  case 5: case '5':
-    moaMomona.show(0,0);
-    break;
-  case 6: case '6':
-    moaKoukou.show(0,0);
-    break;
-  case 7: case '7':
-    moaPukepuke.show(0,0);
-    break;
-  case 8: case '8':
-    kuranui.show(0,0);
-    break;
-  case 9: case '9':
-    moaRuarangi.show(0,0);
-    break;
-  default: 
-    console.log("for some reason, the randomness generator for species selection returned a really weird value: " + mode);
-    // this debug message was a very good call. The amount of times I've been spammed with it in the console output..
-}
+  allMoa[mode-1].show(0,0); //oops this function is one line now
+
 
 }
 
